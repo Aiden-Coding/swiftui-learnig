@@ -48,6 +48,12 @@
 22. [22 Accessibility](/D:/Documents/GitHub/swiftui-learnig/22-accessibility/README.md)
 23. [23 Release Workflow](/D:/Documents/GitHub/swiftui-learnig/23-release-workflow/README.md)
 24. [24 Interview Practice](/D:/Documents/GitHub/swiftui-learnig/24-interview-practice/README.md)
+25. [25 Swift Concurrency](/D:/Documents/GitHub/swiftui-learnig/25-swift-concurrency/README.md)
+26. [26 Networking Layer](/D:/Documents/GitHub/swiftui-learnig/26-networking-layer/README.md)
+27. [27 Error Handling](/D:/Documents/GitHub/swiftui-learnig/27-error-handling/README.md)
+28. [28 Theme System](/D:/Documents/GitHub/swiftui-learnig/28-theme-system/README.md)
+29. [29 Component Library](/D:/Documents/GitHub/swiftui-learnig/29-component-library/README.md)
+30. [30 CI CD Basics](/D:/Documents/GitHub/swiftui-learnig/30-ci-cd-basics/README.md)
 
 ## 学习路径说明
 
