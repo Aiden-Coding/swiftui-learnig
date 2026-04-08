@@ -1,46 +1,40 @@
-# 30. CI/CD 基础：自动化检查与交付
+﻿# 30. CI/CD 基础
 
 ## 学习目标
 
-- 理解 CI/CD 在 SwiftUI 项目中的核心价值
-- 认识最小自动化流水线应该包含什么
-- 能建立基础的提交检查意识
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-CI/CD 的意义是把重复检查自动化，减少人为遗漏。对于 SwiftUI 项目，最小流水线可以先覆盖：构建、测试、静态检查，再逐步扩展到打包与分发。
+建立自动化构建与检查流程。
 
-你不需要一步到位搭建复杂平台。先让每次提交都自动跑一轮基础检查，就已经能显著提升质量稳定性。
-
-当团队规模变大时，CI/CD 也是协作效率的关键保障。
-
-## English Notes
-
-CI/CD automates repetitive quality checks and reduces manual mistakes. For SwiftUI projects, a minimum pipeline often starts with build, tests, and lint checks.
-
-You do not need a full production pipeline on day one. Even simple automated checks per commit bring meaningful quality gains.
-
-As teams grow, CI/CD becomes essential for delivery reliability.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-Minimum CI Steps
-1. Install dependencies
-2. Build the app target
-3. Run unit tests
-4. Run lint or style checks
-5. Report result in pull request
-```
+```swift
+import SwiftUI
 
+struct Chapter30ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("CI/CD 基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 只在本地测，合并前没有统一检查
-- 流水线太慢，导致团队绕过流程
-- 测试失败后没有明确处理规则
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 项目最小 CI/CD 认知，能为后续自动化交付打基础。
-
-What you learned: you now understand how to set up a practical baseline CI/CD workflow for app development.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

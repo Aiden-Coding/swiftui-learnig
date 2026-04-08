@@ -1,65 +1,40 @@
-# 18. 小项目实战：习惯追踪器
+﻿# 18. 小项目实战：习惯追踪器
 
 ## 学习目标
 
-- 把前面知识点组合成一个可运行的小应用
-- 练习列表、表单、状态、导航、持久化的协同
-- 建立从“知识点”到“产品功能”的连接
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-到了这一步，我们把分散的知识点串成一个小项目。习惯追踪器是很适合新手的题材，因为它同时包含列表展示、添加表单、状态更新、简单持久化和页面跳转。
+把基础能力整合为可运行项目。
 
-建议你先做最小版本：查看习惯列表、添加新习惯、标记今日完成。跑通后再逐步加功能，比如统计连续天数、筛选、排序和提醒。
-
-实战阶段最重要的是“先让流程完整”，而不是一次做完所有细节。只要核心闭环可用，你的学习效率会明显提升。
-
-## English Notes
-
-This chapter connects previous topics into one practical app. A habit tracker is beginner-friendly because it combines lists, forms, state, navigation, and simple persistence.
-
-Start with a minimum version: view habits, add a habit, and mark today as completed. Then iterate with streak, filters, sorting, and reminders.
-
-In project mode, prioritize a complete working flow before polishing every detail.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct Habit: Identifiable {
-    let id = UUID()
-    var name: String
-    var doneToday: Bool
-}
-
-struct HabitListView: View {
-    @State private var habits: [Habit] = [
-        Habit(name: "Read 20 minutes", doneToday: false),
-        Habit(name: "Walk 5,000 steps", doneToday: true)
-    ]
-
+struct Chapter18ExampleView: View {
     var body: some View {
-        List($habits) { $habit in
-            Toggle(habit.name, isOn: $habit.doneToday)
+        VStack(spacing: 12) {
+            Text("小项目实战：习惯追踪器")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
-        .navigationTitle("Habits")
+        .padding()
     }
 }
 ```
-
-这个示例是小项目的最小核心：可展示、可切换、可继续扩展。
-
-This example is the minimum project core: visible list, editable state, and room to grow.
-
 ## 常见错误
 
-- 一开始就追求完整产品，结果迟迟无法收敛
-- 功能堆很多，但没有稳定的数据结构
-- 跳过重构步骤，导致迭代越来越慢
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了如何把 SwiftUI 基础知识整合成一个小型可运行项目，并为后续真实项目打基础。
-
-What you learned: you can now assemble core SwiftUI concepts into a small working app.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

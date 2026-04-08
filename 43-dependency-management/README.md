@@ -1,41 +1,40 @@
-# 43. 依赖管理基础
+﻿# 43. 依赖管理基础
 
 ## 学习目标
 
-- 理解第三方依赖引入标准
-- 学会控制依赖数量与版本
-- 能降低供应链和维护风险
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-第三方库能加速开发，但也会带来维护成本和安全风险。引入前要评估活跃度、兼容性、替代成本。
+控制第三方库引入与升级风险。
 
-建议设定最小规则：能用系统能力就不用外部库；必须引入时记录原因和退出方案。
-
-## English Notes
-
-Dependencies speed up delivery but add risk and maintenance cost. Evaluate activity, compatibility, and lock-in before adoption.
-
-Prefer native platform capabilities when possible.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-Dependency Decision Record
-- Why needed
-- Alternatives considered
-- Version strategy
-- Exit plan
-```
+```swift
+import SwiftUI
 
+struct Chapter43ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("依赖管理基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 为小问题引入重型库
-- 版本长期不更新
-- 没有依赖清单和负责人
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了依赖治理的基础方法。
-
-What you learned: you can now adopt dependencies with clearer control and accountability.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

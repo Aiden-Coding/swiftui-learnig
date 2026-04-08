@@ -1,53 +1,40 @@
-# 22. 无障碍基础
+﻿# 22. 无障碍基础
 
 ## 学习目标
 
-- 理解为什么无障碍是产品质量的一部分
-- 学会使用基础无障碍修饰符
-- 能让常见控件更容易被辅助技术理解
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-无障碍不是“后期再补”的可选项，而是高质量应用的一部分。SwiftUI 提供了较好的无障碍支持，我们可以通过语义标签和提示信息提升可访问性。
+提升应用对更多用户的可用性。
 
-对于入门者，先做到三件事：有意义的文本、可读的控件标签、明确的交互提示。这样即使不做复杂适配，也能让体验明显更好。
-
-如果你的界面用了大量图标按钮，尤其要补充无障碍标签，避免读屏只读出不清晰的默认内容。
-
-## English Notes
-
-Accessibility is not an optional late-stage task. It is a core quality dimension of your app. SwiftUI provides strong built-in support for accessible UI.
-
-As a beginner, focus on three basics: meaningful text, readable control labels, and clear interaction hints.
-
-Icon-only controls especially need explicit accessibility labels.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct AccessibilityExampleView: View {
+struct Chapter22ExampleView: View {
     var body: some View {
-        Button {
-            // trigger save
-        } label: {
-            Image(systemName: "square.and.arrow.down")
+        VStack(spacing: 12) {
+            Text("无障碍基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
-        .accessibilityLabel("Save note")
-        .accessibilityHint("Saves your current content locally")
+        .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 图标按钮没有语义标签
-- 颜色对比过低影响可读性
-- 只关注视觉排版，忽略读屏体验
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 无障碍的基础做法，能够让界面对更多用户友好。
-
-What you learned: you can now apply basic accessibility practices in SwiftUI views.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

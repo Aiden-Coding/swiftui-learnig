@@ -1,75 +1,40 @@
-# 10. 模态展示：sheet、alert、confirmationDialog
+﻿# 10. 模态展示：sheet、alert、confirmationDialog
 
 ## 学习目标
 
-- 理解模态展示和页面导航的区别
-- 学会使用 `sheet`、`alert`、`confirmationDialog`
-- 能根据交互目的选择合适的展示方式
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-不是所有界面跳转都适合放进导航栈。有时候我们只想临时展示一个编辑面板、提示框或操作菜单，这种场景就更适合使用模态展示。
+理解导航与模态的使用边界。
 
-`sheet` 通常用于展示一个临时但相对完整的界面，比如新增任务、编辑资料、选择筛选条件。`alert` 更适合简短提示或确认危险操作。`confirmationDialog` 则适合给用户几个操作选项。
-
-学习这一章时，最重要的是理解交互语义。导航通常意味着“进入新的内容层级”，而模态通常意味着“打断当前流程，处理一个临时任务”。
-
-## English Notes
-
-Not every UI transition belongs in a navigation stack. Sometimes you only want to show a temporary editor, a warning, or a small action menu. These cases are better handled with modal presentation.
-
-`sheet` is commonly used for temporary but richer content such as adding a task or editing a profile. `alert` is better for short messages or confirming a risky action. `confirmationDialog` is useful when the user needs to choose from a few actions.
-
-The key idea is interaction meaning. Navigation usually means moving deeper into content, while a modal usually interrupts the current flow to complete a temporary task.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct ModalExampleView: View {
-    @State private var showingSheet = false
-    @State private var showingAlert = false
-
+struct Chapter10ExampleView: View {
     var body: some View {
-        VStack(spacing: 16) {
-            Button("Show Sheet") {
-                showingSheet = true
-            }
-
-            Button("Delete Item") {
-                showingAlert = true
-            }
-            .foregroundStyle(.red)
+        VStack(spacing: 12) {
+            Text("模态展示：sheet、alert、confirmationDialog")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
-        .sheet(isPresented: $showingSheet) {
-            NavigationStack {
-                Text("Create a new note")
-                    .navigationTitle("New Note")
-            }
-        }
-        .alert("Delete this item?", isPresented: $showingAlert) {
-            Button("Delete", role: .destructive) { }
-            Button("Cancel", role: .cancel) { }
-        } message: {
-            Text("This action cannot be undone.")
-        }
+        .padding()
     }
 }
 ```
-
-这个例子同时展示了临时页面和确认提示框两种典型模态交互。
-
-This example shows two common modal interactions: a temporary sheet and a confirmation alert.
-
 ## 常见错误
 
-- 把本来应该导航的页面做成弹窗
-- `sheet` 弹出来了，但没有给内容足够清晰的标题
-- 提示框里放了太多信息，导致用户很难快速决策
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 中常见的模态展示方式，也理解了它们和导航的角色差异。
-
-What you learned: you can now choose between `sheet`, `alert`, and `confirmationDialog` based on the meaning of the interaction.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

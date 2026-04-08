@@ -1,42 +1,40 @@
-# 49. 作品集项目指南
+﻿# 49. 作品集项目指南
 
 ## 学习目标
 
-- 学会规划一个可展示能力的 SwiftUI 项目
-- 理解作品集项目的评估标准
-- 能输出结构清晰的项目说明
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-作品集项目要展示的不只是“能跑”，更是你的思考和工程能力。建议选择一个明确场景，包含真实交互、数据流和基础工程化能力。
+打造可展示能力的项目案例。
 
-README 要写清楚问题背景、技术方案、亮点和取舍，这比堆功能更重要。
-
-## English Notes
-
-A portfolio project should show reasoning and engineering quality, not just a working demo.
-
-Choose a focused scenario and document architecture, tradeoffs, and outcomes clearly.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-Portfolio README Structure
-1. Problem and target users
-2. Feature scope
-3. Architecture and data flow
-4. Testing and quality
-5. Demo and roadmap
-```
+```swift
+import SwiftUI
 
+struct Chapter49ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("作品集项目指南")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 功能很多但主线不清晰
-- 缺少项目背景与取舍说明
-- 没有演示与验证材料
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了如何打造一个更有说服力的 SwiftUI 作品集项目。
-
-What you learned: you can now plan and present a portfolio-ready SwiftUI project.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

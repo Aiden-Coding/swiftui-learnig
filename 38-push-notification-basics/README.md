@@ -1,43 +1,40 @@
-# 38. 推送通知基础
+﻿# 38. 推送通知基础
 
 ## 学习目标
 
-- 理解推送通知的核心价值
-- 认识注册权限与消息处理流程
-- 能设计基础通知落地页逻辑
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-推送是提升回访和提醒完成率的重要方式，但前提是内容有价值且频率可控。技术上要先处理授权、接收和点击后的跳转。
+打通授权、接收与落地跳转。
 
-入门阶段重点是流程完整：申请权限、接收消息、点击后进入目标页面。
-
-## English Notes
-
-Push notifications can improve engagement when they are relevant and timely. The technical basics are permission, delivery handling, and tap routing.
-
-Focus on end-to-end flow first.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
-import UserNotifications
+import SwiftUI
 
-final class NotificationManager {
-    func requestPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+struct Chapter38ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("推送通知基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 没有解释为什么要授权
-- 推送文案与页面不一致
-- 点击推送后无法落地到具体内容
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了推送通知入门流程和产品侧注意点。
-
-What you learned: you understand the basic push permission and handling flow.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

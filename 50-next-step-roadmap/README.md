@@ -1,41 +1,40 @@
-# 50. 下一步路线图
+﻿# 50. 下一步成长路线图
 
 ## 学习目标
 
-- 复盘前 50 章知识结构
-- 明确下一阶段学习优先级
-- 形成可执行的长期成长计划
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-学完基础与进阶后，下一步关键是“按目标定路线”。如果你偏产品开发，就强化工程化和数据能力；如果偏求职，就强化项目表达和面试题复盘。
+制定长期学习与输出计划。
 
-建议每 4 周做一次复盘：检查完成度、薄弱点和下一轮重点。
-
-## English Notes
-
-After fundamentals and advanced topics, progress depends on goal-driven planning.
-
-Run a 4-week review cycle to adjust priorities and keep momentum.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-4-Week Growth Plan
-Week 1: Build one feature-complete mini app
-Week 2: Add tests and analytics
-Week 3: Improve architecture and performance
-Week 4: Write retrospective and portfolio summary
-```
+```swift
+import SwiftUI
 
+struct Chapter50ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("下一步成长路线图")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 学了很多但没有周期复盘
-- 没有可衡量目标
-- 只学新内容，不做输出沉淀
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了如何把 SwiftUI 学习从“碎片输入”转为“持续成长系统”。
-
-What you learned: you can now follow a practical roadmap to keep improving beyond this tutorial.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

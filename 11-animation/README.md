@@ -1,69 +1,40 @@
-# 11. 动画：状态变化、withAnimation、transition
+﻿# 11. 动画基础：withAnimation 与 transition
 
 ## 学习目标
 
-- 理解 SwiftUI 动画和状态变化之间的关系
-- 学会使用 `withAnimation` 和基础 `transition`
-- 能给界面增加简单但清晰的动态反馈
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-SwiftUI 动画的核心并不是“手动控制每一帧”，而是“当状态变化时，让界面变化更平滑”。这和 SwiftUI 的整体思想是一致的：先改变状态，再让框架决定如何更新界面。
+让状态变化拥有平滑反馈。
 
-`withAnimation` 是最容易入门的方式。你把状态更新包在它里面，SwiftUI 就会尝试对相关变化加上动画。`transition` 则常用于控制某个 View 出现和消失时的方式，比如淡入淡出、滑入滑出。
-
-动画不需要很多。对初学者来说，最有价值的动画通常是反馈型动画，例如展开、收起、显示提示、切换状态。只要节奏清楚，界面就会更易懂。
-
-## English Notes
-
-The core of SwiftUI animation is not frame-by-frame control. It is about making state changes feel smooth. This matches the SwiftUI mindset: change the state first, then let the framework update the UI.
-
-`withAnimation` is the easiest starting point. When you wrap a state update inside it, SwiftUI animates the related visual changes. `transition` is commonly used for how a view appears or disappears, such as fade or slide.
-
-You do not need many animations. For beginners, the most useful animations are feedback animations like expand, collapse, show, hide, and state changes.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct AnimationExampleView: View {
-    @State private var isExpanded = false
-
+struct Chapter11ExampleView: View {
     var body: some View {
-        VStack(spacing: 16) {
-            Button(isExpanded ? "Hide Details" : "Show Details") {
-                withAnimation(.easeInOut) {
-                    isExpanded.toggle()
-                }
-            }
-
-            if isExpanded {
-                Text("SwiftUI animations are driven by state changes.")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(.orange.opacity(0.15))
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .transition(.move(edge: .top).combined(with: .opacity))
-            }
+        VStack(spacing: 12) {
+            Text("动画基础：withAnimation 与 transition")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
         .padding()
     }
 }
 ```
-
-这个例子里，文本区块的出现和消失都是由状态切换驱动的。
-
-In this example, the details view appears and disappears as a direct result of state changes.
-
 ## 常见错误
 
-- 还没想清楚状态，就急着加动画
-- 动画很多，但没有帮助用户理解界面变化
-- 只会加动画，不知道出现和消失还可以配合 `transition`
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 动画的入门方式，也理解了动画本质上是状态变化的视觉反馈。
-
-What you learned: you can now add simple state-driven animations with `withAnimation` and `transition`.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

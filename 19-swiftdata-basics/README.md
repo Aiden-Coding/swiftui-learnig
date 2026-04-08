@@ -1,69 +1,40 @@
-# 19. SwiftData 入门
+﻿# 19. SwiftData 入门
 
 ## 学习目标
 
-- 理解 SwiftData 在 SwiftUI 项目中的定位
-- 学会定义最基础的数据模型
-- 能完成新增、查询、删除的最小闭环
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-当应用需要保存结构化数据时，`@AppStorage` 就不够用了。SwiftData 是 Apple 提供的现代本地数据方案，和 SwiftUI 集成度很高，适合做对象化的数据存储与查询。
+建立结构化本地存储能力。
 
-入门阶段你只需要掌握三件事：定义模型、插入数据、读取数据。先让数据能稳定地保存和展示，再考虑更复杂的关系和迁移。
-
-SwiftData 在学习路径里是从“轻量持久化”走向“结构化持久化”的关键一步。
-
-## English Notes
-
-When your app needs structured local data, `@AppStorage` is no longer enough. SwiftData is Apple's modern local persistence framework and integrates well with SwiftUI.
-
-At the beginner stage, focus on three essentials: model definition, insertion, and querying. Build a stable data loop first, then move to advanced relationships and migrations.
-
-SwiftData is the bridge from lightweight persistence to structured data management.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
-import SwiftData
 
-@Model
-final class TaskItem {
-    var title: String
-    var isDone: Bool
-
-    init(title: String, isDone: Bool = false) {
-        self.title = title
-        self.isDone = isDone
-    }
-}
-
-struct SwiftDataListView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [TaskItem]
-
+struct Chapter19ExampleView: View {
     var body: some View {
-        List(items) { item in
-            Text(item.title)
+        VStack(spacing: 12) {
+            Text("SwiftData 入门")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
-        .toolbar {
-            Button("Add") {
-                modelContext.insert(TaskItem(title: "New Task"))
-            }
-        }
+        .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 把 SwiftData 当成“自动解决所有数据问题”的工具
-- 没有先定义清晰模型就开始堆功能
-- 在入门阶段过早引入复杂关系
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftData 的基础使用方式，并理解了它在 SwiftUI 数据层中的角色。
-
-What you learned: you can now build a minimal structured persistence loop with SwiftData.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

@@ -1,101 +1,64 @@
-# SwiftUI Learning
+﻿# SwiftUI 学习教程
 
-一个面向新手的 SwiftUI 双语入门教程仓库。This repository is a beginner-friendly bilingual SwiftUI course focused on the fundamentals.
+一个面向新手的 SwiftUI 中文教程仓库，按知识点拆分目录，适合按顺序学习与复盘。
 
-## 这套教程适合谁
-
-- 想从零开始学习 SwiftUI 的初学者
-- 会一点 Swift，但还没有系统写过界面的人
-- 想快速理解 SwiftUI 常用概念和现代写法的人
-
-## 学习前准备
-
-- macOS 与 Xcode 15 或更新版本
-- Swift 基本语法，例如变量、结构体、函数
-- 建议使用 SwiftUI App 模板创建练习项目
-- 示例默认以 iOS 17 风格 API 为主，导航部分优先使用 `NavigationStack`
-
-## 推荐学习方式
-
-1. 按章节顺序阅读，不要跳过状态和布局两章。
-2. 每看完一章，就在 Xcode 里新建一个小视图自己敲一遍示例。
-3. 遇到不理解的修饰符时，先观察效果，再回头理解语义。
-4. 学完整套基础篇后，再进入数据流篇或小项目篇会更顺。
+## 学习建议
+- 按章节顺序学习，边看边在 Xcode 中实操。
+- 每章先完成示例，再做一小步扩展练习。
+- 每 5 章做一次复盘，整理自己的易错点。
 
 ## 章节目录
+1. [01 SwiftUI 是什么与开发环境准备](/D:/Documents/GitHub/swiftui-learnig/01-introduction/README.md)
+2. [02 第一个 View 与基本语法](/D:/Documents/GitHub/swiftui-learnig/02-first-view/README.md)
+3. [03 文本、图片、按钮与基础组件](/D:/Documents/GitHub/swiftui-learnig/03-basic-controls/README.md)
+4. [04 布局系统：VStack、HStack、ZStack、Spacer](/D:/Documents/GitHub/swiftui-learnig/04-layout/README.md)
+5. [05 状态管理基础：@State、@Binding](/D:/Documents/GitHub/swiftui-learnig/05-state/README.md)
+6. [06 列表与数据展示：List、ForEach](/D:/Documents/GitHub/swiftui-learnig/06-lists/README.md)
+7. [07 导航：NavigationStack 与页面跳转](/D:/Documents/GitHub/swiftui-learnig/07-navigation/README.md)
+8. [08 表单与输入：TextField、Toggle、Picker](/D:/Documents/GitHub/swiftui-learnig/08-forms/README.md)
+9. [09 样式与常用修饰符组织](/D:/Documents/GitHub/swiftui-learnig/09-styling/README.md)
+10. [10 模态展示：sheet、alert、confirmationDialog](/D:/Documents/GitHub/swiftui-learnig/10-modal-presentation/README.md)
+11. [11 动画基础：withAnimation 与 transition](/D:/Documents/GitHub/swiftui-learnig/11-animation/README.md)
+12. [12 异步任务、加载状态与远程图片](/D:/Documents/GitHub/swiftui-learnig/12-async-data/README.md)
+13. [13 组件拆分与复用](/D:/Documents/GitHub/swiftui-learnig/13-reusable-components/README.md)
+14. [14 生命周期：onAppear、onDisappear、task](/D:/Documents/GitHub/swiftui-learnig/14-lifecycle/README.md)
+15. [15 数据流进阶：Observable 与状态共享](/D:/Documents/GitHub/swiftui-learnig/15-observable-data-flow/README.md)
+16. [16 数据持久化入门：AppStorage](/D:/Documents/GitHub/swiftui-learnig/16-persistence/README.md)
+17. [17 测试基础：可测试思维与单元测试](/D:/Documents/GitHub/swiftui-learnig/17-testing-basics/README.md)
+18. [18 小项目实战：习惯追踪器](/D:/Documents/GitHub/swiftui-learnig/18-mini-project/README.md)
+19. [19 SwiftData 入门](/D:/Documents/GitHub/swiftui-learnig/19-swiftdata-basics/README.md)
+20. [20 架构基础：分层与职责](/D:/Documents/GitHub/swiftui-learnig/20-architecture-basics/README.md)
+21. [21 性能优化基础](/D:/Documents/GitHub/swiftui-learnig/21-performance-basics/README.md)
+22. [22 无障碍基础](/D:/Documents/GitHub/swiftui-learnig/22-accessibility/README.md)
+23. [23 发布流程入门](/D:/Documents/GitHub/swiftui-learnig/23-release-workflow/README.md)
+24. [24 面试与练习题](/D:/Documents/GitHub/swiftui-learnig/24-interview-practice/README.md)
+25. [25 Swift 并发基础](/D:/Documents/GitHub/swiftui-learnig/25-swift-concurrency/README.md)
+26. [26 网络层入门](/D:/Documents/GitHub/swiftui-learnig/26-networking-layer/README.md)
+27. [27 错误处理与恢复策略](/D:/Documents/GitHub/swiftui-learnig/27-error-handling/README.md)
+28. [28 主题系统：颜色与字体规范](/D:/Documents/GitHub/swiftui-learnig/28-theme-system/README.md)
+29. [29 组件库入门](/D:/Documents/GitHub/swiftui-learnig/29-component-library/README.md)
+30. [30 CI/CD 基础](/D:/Documents/GitHub/swiftui-learnig/30-ci-cd-basics/README.md)
+31. [31 安全基础：敏感信息与数据保护](/D:/Documents/GitHub/swiftui-learnig/31-security-basics/README.md)
+32. [32 日志与监控：可观测性入门](/D:/Documents/GitHub/swiftui-learnig/32-logging-monitoring/README.md)
+33. [33 国际化与本地化](/D:/Documents/GitHub/swiftui-learnig/33-localization/README.md)
+34. [34 Widget 入门](/D:/Documents/GitHub/swiftui-learnig/34-widgets/README.md)
+35. [35 App Intents 入门](/D:/Documents/GitHub/swiftui-learnig/35-app-intents/README.md)
+36. [36 上线后运营与迭代](/D:/Documents/GitHub/swiftui-learnig/36-post-release-ops/README.md)
+37. [37 Deep Link 基础](/D:/Documents/GitHub/swiftui-learnig/37-deep-link-basics/README.md)
+38. [38 推送通知基础](/D:/Documents/GitHub/swiftui-learnig/38-push-notification-basics/README.md)
+39. [39 离线优先基础](/D:/Documents/GitHub/swiftui-learnig/39-offline-first-basics/README.md)
+40. [40 Feature Flag 基础](/D:/Documents/GitHub/swiftui-learnig/40-feature-flags/README.md)
+41. [41 与设计协作](/D:/Documents/GitHub/swiftui-learnig/41-design-collaboration/README.md)
+42. [42 Code Review 实践](/D:/Documents/GitHub/swiftui-learnig/42-code-review-practice/README.md)
+43. [43 依赖管理基础](/D:/Documents/GitHub/swiftui-learnig/43-dependency-management/README.md)
+44. [44 模块化基础](/D:/Documents/GitHub/swiftui-learnig/44-module-basics/README.md)
+45. [45 数据埋点基础](/D:/Documents/GitHub/swiftui-learnig/45-analytics-basics/README.md)
+46. [46 实验与 A/B 测试基础](/D:/Documents/GitHub/swiftui-learnig/46-experiment-basics/README.md)
+47. [47 App Store 优化基础](/D:/Documents/GitHub/swiftui-learnig/47-app-store-optimization/README.md)
+48. [48 团队协作流程](/D:/Documents/GitHub/swiftui-learnig/48-team-workflow/README.md)
+49. [49 作品集项目指南](/D:/Documents/GitHub/swiftui-learnig/49-portfolio-project-guide/README.md)
+50. [50 下一步成长路线图](/D:/Documents/GitHub/swiftui-learnig/50-next-step-roadmap/README.md)
 
-1. [01 Introduction](/D:/Documents/GitHub/swiftui-learnig/01-introduction/README.md)
-2. [02 First View](/D:/Documents/GitHub/swiftui-learnig/02-first-view/README.md)
-3. [03 Basic Controls](/D:/Documents/GitHub/swiftui-learnig/03-basic-controls/README.md)
-4. [04 Layout](/D:/Documents/GitHub/swiftui-learnig/04-layout/README.md)
-5. [05 State](/D:/Documents/GitHub/swiftui-learnig/05-state/README.md)
-6. [06 Lists](/D:/Documents/GitHub/swiftui-learnig/06-lists/README.md)
-7. [07 Navigation](/D:/Documents/GitHub/swiftui-learnig/07-navigation/README.md)
-8. [08 Forms](/D:/Documents/GitHub/swiftui-learnig/08-forms/README.md)
-9. [09 Styling](/D:/Documents/GitHub/swiftui-learnig/09-styling/README.md)
-10. [10 Modal Presentation](/D:/Documents/GitHub/swiftui-learnig/10-modal-presentation/README.md)
-11. [11 Animation](/D:/Documents/GitHub/swiftui-learnig/11-animation/README.md)
-12. [12 Async Data](/D:/Documents/GitHub/swiftui-learnig/12-async-data/README.md)
-13. [13 Reusable Components](/D:/Documents/GitHub/swiftui-learnig/13-reusable-components/README.md)
-14. [14 Lifecycle](/D:/Documents/GitHub/swiftui-learnig/14-lifecycle/README.md)
-15. [15 Observable Data Flow](/D:/Documents/GitHub/swiftui-learnig/15-observable-data-flow/README.md)
-16. [16 Persistence](/D:/Documents/GitHub/swiftui-learnig/16-persistence/README.md)
-17. [17 Testing Basics](/D:/Documents/GitHub/swiftui-learnig/17-testing-basics/README.md)
-18. [18 Mini Project](/D:/Documents/GitHub/swiftui-learnig/18-mini-project/README.md)
-19. [19 SwiftData Basics](/D:/Documents/GitHub/swiftui-learnig/19-swiftdata-basics/README.md)
-20. [20 Architecture Basics](/D:/Documents/GitHub/swiftui-learnig/20-architecture-basics/README.md)
-21. [21 Performance Basics](/D:/Documents/GitHub/swiftui-learnig/21-performance-basics/README.md)
-22. [22 Accessibility](/D:/Documents/GitHub/swiftui-learnig/22-accessibility/README.md)
-23. [23 Release Workflow](/D:/Documents/GitHub/swiftui-learnig/23-release-workflow/README.md)
-24. [24 Interview Practice](/D:/Documents/GitHub/swiftui-learnig/24-interview-practice/README.md)
-25. [25 Swift Concurrency](/D:/Documents/GitHub/swiftui-learnig/25-swift-concurrency/README.md)
-26. [26 Networking Layer](/D:/Documents/GitHub/swiftui-learnig/26-networking-layer/README.md)
-27. [27 Error Handling](/D:/Documents/GitHub/swiftui-learnig/27-error-handling/README.md)
-28. [28 Theme System](/D:/Documents/GitHub/swiftui-learnig/28-theme-system/README.md)
-29. [29 Component Library](/D:/Documents/GitHub/swiftui-learnig/29-component-library/README.md)
-30. [30 CI CD Basics](/D:/Documents/GitHub/swiftui-learnig/30-ci-cd-basics/README.md)
-31. [31 Security Basics](/D:/Documents/GitHub/swiftui-learnig/31-security-basics/README.md)
-32. [32 Logging And Monitoring](/D:/Documents/GitHub/swiftui-learnig/32-logging-monitoring/README.md)
-33. [33 Localization](/D:/Documents/GitHub/swiftui-learnig/33-localization/README.md)
-34. [34 Widgets](/D:/Documents/GitHub/swiftui-learnig/34-widgets/README.md)
-35. [35 App Intents](/D:/Documents/GitHub/swiftui-learnig/35-app-intents/README.md)
-36. [36 Post Release Ops](/D:/Documents/GitHub/swiftui-learnig/36-post-release-ops/README.md)
-37. [37 Deep Link Basics](/D:/Documents/GitHub/swiftui-learnig/37-deep-link-basics/README.md)
-38. [38 Push Notification Basics](/D:/Documents/GitHub/swiftui-learnig/38-push-notification-basics/README.md)
-39. [39 Offline First Basics](/D:/Documents/GitHub/swiftui-learnig/39-offline-first-basics/README.md)
-40. [40 Feature Flags](/D:/Documents/GitHub/swiftui-learnig/40-feature-flags/README.md)
-41. [41 Design Collaboration](/D:/Documents/GitHub/swiftui-learnig/41-design-collaboration/README.md)
-42. [42 Code Review Practice](/D:/Documents/GitHub/swiftui-learnig/42-code-review-practice/README.md)
-43. [43 Dependency Management](/D:/Documents/GitHub/swiftui-learnig/43-dependency-management/README.md)
-44. [44 Module Basics](/D:/Documents/GitHub/swiftui-learnig/44-module-basics/README.md)
-45. [45 Analytics Basics](/D:/Documents/GitHub/swiftui-learnig/45-analytics-basics/README.md)
-46. [46 Experiment Basics](/D:/Documents/GitHub/swiftui-learnig/46-experiment-basics/README.md)
-47. [47 App Store Optimization](/D:/Documents/GitHub/swiftui-learnig/47-app-store-optimization/README.md)
-48. [48 Team Workflow](/D:/Documents/GitHub/swiftui-learnig/48-team-workflow/README.md)
-49. [49 Portfolio Project Guide](/D:/Documents/GitHub/swiftui-learnig/49-portfolio-project-guide/README.md)
-50. [50 Next Step Roadmap](/D:/Documents/GitHub/swiftui-learnig/50-next-step-roadmap/README.md)
-
-## 学习路径说明
-
-这是一套基础篇教程，重点是让你先建立 SwiftUI 的心智模型：界面由 View 组成，布局由容器控制，交互由状态驱动。
-
-This is the fundamentals track. The goal is to help you build a clear mental model: SwiftUI screens are made of views, layout is controlled by containers, and interaction is driven by state.
-
-## 已覆盖的进阶入门主题
-
-- 样式与常用修饰符组织
-- 模态展示：sheet、alert、confirmation dialog
-- 基础动画与过渡
-- 异步任务、加载状态与远程图片
-
-## 后续可扩展方向
-
-- 数据流篇：`Observable`、`@StateObject`、简单架构拆分
-- 小项目篇：待办清单、记账页、习惯追踪器等完整示例
-- 进阶篇：持久化、组件复用、测试、架构设计
-
-## 使用说明
-
-本仓库当前以 Markdown 教程为主，不包含 Xcode 示例工程。你可以边看文档边在自己的练习项目里实现示例代码。
-
-The repository currently focuses on Markdown-based lessons and does not include a sample Xcode project yet. You can follow each lesson and type the examples into your own practice app.
+## 说明
+- 全部章节为中文内容。
+- 每章包含学习目标、中文讲解、示例代码、常见错误和小结。

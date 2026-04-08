@@ -1,46 +1,40 @@
-# 23. 发布流程入门
+﻿# 23. 发布流程入门
 
 ## 学习目标
 
-- 了解从开发到发布的基本路径
-- 理解版本号、构建号和发布检查的重要性
-- 能建立简化但可靠的发布清单
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-做完功能不等于可以发布。发布流程的价值在于降低线上风险，确保版本可追踪、可回滚、可验证。即使是小项目，也建议建立最小发布规范。
+建立稳定可复用的上线流程。
 
-入门可以从一份轻量 checklist 开始：版本信息更新、关键功能回归、基础无障碍检查、崩溃日志关注、发布说明整理。流程越稳定，团队越省心。
-
-你不需要一开始就接入完整 CI/CD，但要有“每次发布都做同样关键检查”的意识。
-
-## English Notes
-
-Feature completion does not mean release readiness. A release workflow reduces production risk and keeps versions traceable and verifiable.
-
-Start with a lightweight checklist: version update, key regression checks, basic accessibility pass, crash monitoring, and release notes.
-
-You do not need full CI/CD at first, but you do need consistent release discipline.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-Release Checklist (Minimum)
-1. Update app version and build number
-2. Verify core flows: launch, login, create, edit
-3. Run basic accessibility and UI sanity checks
-4. Confirm analytics and crash reporting are active
-5. Write short release notes
-```
+```swift
+import SwiftUI
 
+struct Chapter23ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("发布流程入门")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 临发布才临时测试，问题集中爆发
-- 没有发布记录，后续难以排查线上问题
-- 跳过关键回归流程
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了小团队可落地的发布流程基础，能让迭代更稳定。
-
-What you learned: you can now follow a practical minimum release workflow for SwiftUI apps.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

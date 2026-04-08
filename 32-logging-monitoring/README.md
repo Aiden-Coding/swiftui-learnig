@@ -1,45 +1,40 @@
-# 32. 日志与监控：可观测性入门
+﻿# 32. 日志与监控：可观测性入门
 
 ## 学习目标
 
-- 理解为什么应用需要可观测性
-- 学会区分开发日志与生产监控
-- 能建立最小日志与崩溃跟踪策略
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-没有日志和监控，线上问题几乎无法高效定位。可观测性的目标是回答三个问题：发生了什么、影响了谁、如何复现。
+让线上问题可定位、可追踪。
 
-入门阶段建议先做两件事：关键流程埋点和崩溃监控接入。日志要有结构，避免“全是字符串”的混乱输出。
-
-监控不是为了收集数据而收集，而是为了支撑排障和产品决策。
-
-## English Notes
-
-Without logs and monitoring, production issues are hard to diagnose. Observability should help answer what happened, who was affected, and how to reproduce.
-
-At this stage, start with two basics: key flow logging and crash reporting. Keep logs structured and purposeful.
-
-Monitoring is not about collecting everything. It is about supporting debugging and decision-making.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
-import os
+import SwiftUI
 
-let logger = Logger(subsystem: "com.example.swiftui", category: "network")
-logger.info("Request started for feed endpoint")
-logger.error("Request failed with status: \(500)")
+struct Chapter32ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("日志与监控：可观测性入门")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
 ```
-
 ## 常见错误
 
-- 日志过多但没有上下文信息
-- 线上问题发生后才临时加监控
-- 只看崩溃率，不看核心流程成功率
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了可观测性的最小实践：结构化日志与基础监控。
-
-What you learned: you can now set up practical baseline observability for SwiftUI apps.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

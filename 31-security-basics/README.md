@@ -1,48 +1,40 @@
-# 31. 安全基础：敏感信息与数据保护
+﻿# 31. 安全基础：敏感信息与数据保护
 
 ## 学习目标
 
-- 理解 SwiftUI 项目里最基本的安全边界
-- 学会区分可公开数据与敏感数据
-- 建立最小可执行的安全检查习惯
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-移动应用安全并不只是后端的事。客户端同样需要避免泄露敏感信息，例如把密钥硬编码进源码、把令牌明文保存、把调试日志直接输出到生产环境。
+建立客户端安全最小实践。
 
-入门阶段先把最关键习惯建立起来：密钥不进仓库、敏感数据不用明文存储、网络请求优先 HTTPS、错误提示不暴露内部细节。
-
-安全是持续过程，不是一次性任务。每次新增功能都要顺手做最小安全审视。
-
-## English Notes
-
-App security is not only a backend concern. Client apps must avoid exposing secrets, storing tokens in plain text, or leaking internals through production logs.
-
-Start with practical basics: do not commit secrets, avoid plain-text storage for sensitive data, use HTTPS, and keep user-facing errors generic.
-
-Security is continuous. Every new feature should include a minimum security review.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
-import Foundation
+import SwiftUI
 
-enum AppConfig {
-    // Load from secure runtime configuration, not hardcoded literals.
-    static var apiBaseURL: URL {
-        URL(string: "https://api.example.com")!
+struct Chapter31ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("安全基础：敏感信息与数据保护")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 把 API key 或 token 写进源码
-- 调试日志里输出用户隐私字段
-- 把“功能可用”当成“安全可上线”
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 项目最基础的安全意识和落地习惯。
-
-What you learned: you now understand practical baseline security hygiene for app development.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

@@ -1,48 +1,40 @@
-# 37. Deep Link 基础
+﻿# 37. Deep Link 基础
 
 ## 学习目标
 
-- 理解 Deep Link 的使用场景
-- 学会处理基础 URL 跳转
-- 能把外部入口映射到 App 页面
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-Deep Link 允许用户通过链接直接打开应用中的某个页面，比如活动页或详情页。它是连接 App 内外流量的重要入口。
+实现外部链接直达页面。
 
-入门阶段先做最小闭环：识别 URL、解析路径、跳转目标页面。只要路径规则清晰，后续扩展就会很稳。
-
-## English Notes
-
-Deep links let users open a specific app screen directly from a URL. They are important for campaigns and cross-platform flows.
-
-Start with a minimal loop: detect URL, parse route, and navigate to target screen.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct RootView: View {
-    @State private var route = "home"
-
+struct Chapter37ExampleView: View {
     var body: some View {
-        Text("Current route: \(route)")
-            .onOpenURL { url in
-                route = url.host() ?? "home"
-            }
+        VStack(spacing: 12) {
+            Text("Deep Link 基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 链接规则没有文档化
-- 页面不存在时没有兜底
-- 只测成功路径，不测异常参数
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 中 Deep Link 的最小实现路径。
-
-What you learned: you can now map incoming URLs to app routes in SwiftUI.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

@@ -1,64 +1,40 @@
-# 03. 文本、图片、按钮与常用基础组件
+﻿# 03. 文本、图片、按钮与基础组件
 
 ## 学习目标
 
-- 认识 `Text`、`Image`、`Button` 的基本用法
-- 理解基础组件如何组合成简单界面
-- 能写出一个带标题、图标和按钮的小模块
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-SwiftUI 中最常用的基础组件包括文本、图片和按钮。`Text` 用于展示文字，`Image` 用于显示系统图标或资源图片，`Button` 用于处理点击交互。
+掌握最常用控件的组合方式。
 
-其中 `Image(systemName:)` 很适合入门练习，因为它可以直接使用 SF Symbols 图标，不需要你先准备素材。按钮则通常接收两个部分：点击时执行的动作，以及按钮显示的内容。
-
-这些基础组件本身功能很简单，但配合布局容器后，就能组成卡片、欢迎区块、设置入口等大量真实界面。
-
-## English Notes
-
-The most common beginner-friendly controls in SwiftUI are `Text`, `Image`, and `Button`. `Text` displays words, `Image` shows icons or assets, and `Button` handles tap interaction.
-
-`Image(systemName:)` is especially useful for practice because it gives you access to SF Symbols without importing custom assets. A button usually has two parts: the action and the label content.
-
-These views are simple on their own, but once you place them inside layout containers, they can form many real UI sections.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct BasicControlsView: View {
+struct Chapter03ExampleView: View {
     var body: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "star.fill")
-                .font(.system(size: 40))
-                .foregroundStyle(.yellow)
-
-            Text("Start Learning SwiftUI")
+        VStack(spacing: 12) {
+            Text("文本、图片、按钮与基础组件")
                 .font(.headline)
-
-            Button("Begin") {
-                print("Button tapped")
-            }
-            .buttonStyle(.borderedProminent)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
         .padding()
     }
 }
 ```
-
-这个例子里，`VStack` 把三个基础组件组织成一个清晰的小模块。
-
-In this example, `VStack` arranges three basic controls into a small and readable section.
-
 ## 常见错误
 
-- 把 `Image("star")` 和 `Image(systemName: "star")` 混用
-- 按钮里只会写文字，不知道也可以放复杂内容
-- 组件能显示出来就结束，没有继续调整层级和可读性
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了最常见的三个基础组件，以及它们如何组合成一个简单但完整的小界面。
-
-What you learned: you can now use `Text`, `Image`, and `Button` together to build a simple interactive section.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

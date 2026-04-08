@@ -1,61 +1,40 @@
-# 17. 测试基础：可测试思维与简单单元测试
+﻿# 17. 测试基础：可测试思维与单元测试
 
 ## 学习目标
 
-- 理解 SwiftUI 学习阶段最值得先测什么
-- 学会把简单逻辑从视图中拆出来测试
-- 认识基础断言与测试命名习惯
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-初学 SwiftUI 时，不需要一上来就覆盖全部 UI 自动化。更高收益的做法是先测试纯逻辑，比如输入校验、过滤条件、状态计算。这些逻辑稳定、执行快，也更容易定位问题。
+优先保护关键业务逻辑。
 
-为了便于测试，可以把逻辑提取到普通结构体或函数里。视图只负责展示，逻辑由可测试单元负责，这样代码质量会更稳。
-
-测试命名建议采用“条件 + 预期结果”的风格，让未来回看时一眼就知道测试在保护什么行为。
-
-## English Notes
-
-At the beginner stage, you do not need full UI automation first. A higher-value strategy is to test pure logic such as validation, filtering, and state calculation.
-
-Extracting logic from views into simple structs or functions makes testing straightforward and improves maintainability.
-
-Use clear test names that describe condition and expected outcome.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
-import XCTest
+import SwiftUI
 
-struct UsernameValidator {
-    static func isValid(_ text: String) -> Bool {
-        text.count >= 3
-    }
-}
-
-final class UsernameValidatorTests: XCTestCase {
-    func testShortNameIsInvalid() {
-        XCTAssertFalse(UsernameValidator.isValid("ab"))
-    }
-
-    func testValidNamePasses() {
-        XCTAssertTrue(UsernameValidator.isValid("alex"))
+struct Chapter17ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("测试基础：可测试思维与单元测试")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
     }
 }
 ```
-
-这个示例展示了最基础的逻辑测试思路。
-
-This sample demonstrates a minimal and practical unit testing approach.
-
 ## 常见错误
 
-- 只写 UI，不提取可测试逻辑
-- 测试名过于笼统，看不出保护行为
-- 测试覆盖了很多代码，却没有覆盖关键规则
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 入门阶段的测试重点，以及如何从可测试逻辑开始建立质量保障。
-
-What you learned: you can now write simple unit tests for extracted business logic.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

@@ -1,40 +1,40 @@
-# 47. App Store 优化基础
+﻿# 47. App Store 优化基础
 
 ## 学习目标
 
-- 理解 ASO 的核心要素
-- 学会优化标题、关键词和截图叙事
-- 能提升商店页转化基础质量
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-ASO 影响自然流量和安装转化。入门阶段先优化最关键元素：应用名称、副标题、关键词、首屏截图与文案。
+提升商店页曝光与转化。
 
-商店页不是静态资产，应该按版本持续迭代。
-
-## English Notes
-
-ASO affects discoverability and conversion. Start with app title, subtitle, keywords, and first screenshots.
-
-Treat store assets as iterative product surfaces.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-ASO Checklist
-1. Clear value proposition in first screenshot
-2. Keyword coverage and relevance
-3. Consistent visual hierarchy
-```
+```swift
+import SwiftUI
 
+struct Chapter47ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("App Store 优化基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 关键词堆砌不考虑相关性
-- 截图漂亮但价值点不清晰
-- 长期不复盘商店转化
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 ASO 的基础优化方向。
-
-What you learned: you can now improve basic App Store listing quality with clearer strategy.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

@@ -1,52 +1,40 @@
-# 29. 组件库入门：从复用到规范
+﻿# 29. 组件库入门
 
 ## 学习目标
 
-- 理解组件库和普通组件复用的区别
-- 学会建立基础组件分类与命名规范
-- 能把常用组件沉淀为团队资产
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-当项目进入多人协作阶段，仅有“零散可复用组件”还不够，需要更系统的组件库思维。组件库不仅是代码集合，还包含命名规范、使用约束和设计一致性。
+沉淀可复用的团队 UI 资产。
 
-可以先从高频基础组件开始沉淀，例如按钮、输入框、卡片、空状态。每个组件都应该有明确输入参数和适用场景说明。
-
-组件库建设是长期工作，起步阶段先保证“可发现、可复用、可维护”。
-
-## English Notes
-
-In team-scale projects, scattered reusable views are not enough. A component library adds structure, naming consistency, and usage rules.
-
-Start by collecting high-frequency primitives like buttons, text fields, cards, and empty states. Each component should have clear API inputs and intended use.
-
-Treat this as long-term asset building: discoverable, reusable, maintainable.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct PrimaryButton: View {
-    let title: String
-    let action: () -> Void
-
+struct Chapter29ExampleView: View {
     var body: some View {
-        Button(title, action: action)
-            .buttonStyle(.borderedProminent)
-            .tint(.blue)
+        VStack(spacing: 12) {
+            Text("组件库入门")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 组件命名不统一，调用方难检索
-- 组件参数过多，职责过重
-- 缺少使用约定导致风格漂移
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了把基础组件升级为可持续演进的组件库思路。
-
-What you learned: you can now organize reusable SwiftUI views into a maintainable component library foundation.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

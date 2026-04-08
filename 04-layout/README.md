@@ -1,75 +1,40 @@
-# 04. 布局系统：VStack、HStack、ZStack、Spacer
+﻿# 04. 布局系统：VStack、HStack、ZStack、Spacer
 
 ## 学习目标
 
-- 理解 SwiftUI 最常见的布局容器
-- 知道垂直、水平、叠放布局分别适合什么场景
-- 能通过 `Spacer` 控制留白和对齐
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-SwiftUI 的布局通常从几个核心容器开始：`VStack` 负责垂直排列，`HStack` 负责水平排列，`ZStack` 负责层叠显示。大部分基础页面都可以由这三种容器组合出来。
+掌握常见布局容器与对齐方式。
 
-`Spacer` 是布局里非常重要的角色。它会占据可用剩余空间，因此常被用来把内容推到一边，或者在元素之间制造弹性空白。
-
-学习布局时，不要只看代码。你最好一边改 `spacing`、`padding`、`alignment`，一边观察界面变化。布局是最适合“调一调就懂”的部分。
-
-## English Notes
-
-SwiftUI layout usually begins with a few core containers: `VStack` for vertical layout, `HStack` for horizontal layout, and `ZStack` for layered content. Most beginner screens can be built from these three.
-
-`Spacer` is a key layout tool. It expands to take up available space, which makes it useful for pushing content apart or creating flexible empty space.
-
-When learning layout, do not just read the code. Change values like `spacing`, `padding`, and `alignment` and observe the result on screen.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct LayoutExampleView: View {
+struct Chapter04ExampleView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            HStack {
-                Image(systemName: "person.circle.fill")
-                    .font(.largeTitle)
-
-                VStack(alignment: .leading) {
-                    Text("Taylor")
-                        .font(.headline)
-                    Text("iOS Learner")
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-            }
-
-            ZStack {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(.blue.opacity(0.15))
-                    .frame(height: 100)
-
-                Text("Layered Content")
-                    .font(.title3)
-            }
+        VStack(spacing: 12) {
+            Text("布局系统：VStack、HStack、ZStack、Spacer")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
         .padding()
     }
 }
 ```
-
-这个例子同时展示了水平、垂直和层叠布局，也演示了 `Spacer` 如何把内容推开。
-
-This example combines vertical, horizontal, and layered layout, and it also shows how `Spacer` pushes content apart.
-
 ## 常见错误
 
-- 一上来就追求复杂布局，没有先掌握三种基础容器
-- 看不懂对齐问题时，只会不停加 `padding`
-- 不知道 `Spacer` 会吃掉剩余空间，导致排版结果出乎意料
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 中最核心的布局容器，以及如何利用 `Spacer` 和修饰符控制结构与留白。
-
-What you learned: you now understand the core layout containers and how `Spacer` helps control alignment and spacing.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

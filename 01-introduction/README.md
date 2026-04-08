@@ -1,51 +1,40 @@
-# 01. SwiftUI 是什么与开发环境准备
+﻿# 01. SwiftUI 是什么与开发环境准备
 
 ## 学习目标
 
-- 理解 SwiftUI 的核心定位
-- 知道学习 SwiftUI 需要准备哪些工具
-- 建立“声明式 UI”的基本概念
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-SwiftUI 是 Apple 推出的声明式界面框架。你不需要一步一步告诉系统“先创建标签，再设置位置，再更新颜色”，而是直接描述“界面现在应该长什么样”。当数据变化时，SwiftUI 会重新计算并刷新界面。
+建立 SwiftUI 声明式开发的整体认知。
 
-对新手来说，SwiftUI 的最大优势是写法统一。文本、图片、按钮、列表、导航都遵循类似的组合方式，你会很快发现很多界面都只是把不同的 View 拼在一起。
-
-学习 SwiftUI 前，建议准备好 Xcode 15 或更新版本，并熟悉最基础的 Swift 语法。你不需要先成为 Swift 专家，但至少应该看得懂变量、结构体、函数和简单的数组。
-
-## English Notes
-
-SwiftUI is Apple's declarative UI framework. Instead of telling the system every step to build and update the screen, you describe what the UI should look like for the current state.
-
-One major benefit for beginners is consistency. Text, images, buttons, lists, and navigation all follow the same composition style, so you can build many screens by combining small views.
-
-Before starting, prepare Xcode 15 or later and make sure you understand basic Swift syntax such as variables, structs, functions, and simple arrays.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct WelcomeView: View {
+struct Chapter01ExampleView: View {
     var body: some View {
-        Text("Hello, SwiftUI!")
+        VStack(spacing: 12) {
+            Text("SwiftUI 是什么与开发环境准备")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
     }
 }
 ```
-
-这段代码已经体现了 SwiftUI 的基本形式：定义一个遵守 `View` 协议的结构体，然后在 `body` 中描述界面。
-
-This snippet already shows the SwiftUI pattern: define a struct that conforms to `View`, then describe the interface in `body`.
-
 ## 常见错误
 
-- 以为 SwiftUI 和 UIKit 一样需要手动更新界面
-- 还没理解 `body` 的意义，就急着记大量修饰符
-- 没有准备练习项目，只停留在阅读层面
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 是一个声明式 UI 框架，也知道了开始学习前应准备的开发环境和基础知识。
-
-What you learned: SwiftUI is a declarative UI framework, and you now know the basic setup and background knowledge needed before learning it.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

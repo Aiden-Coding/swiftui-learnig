@@ -1,40 +1,40 @@
-# 41. 与设计协作
+﻿# 41. 与设计协作
 
 ## 学习目标
 
-- 理解设计协作中的关键交付物
-- 学会把设计稿转成可实现需求
-- 能减少开发和设计之间的返工
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-高质量 UI 不是开发单方面完成的，设计协作需要统一组件、状态、边距和交互规则。明确规格会大幅降低返工。
+减少设计到实现的返工成本。
 
-入门建议固定同步节奏：开发前对齐、开发中核对、提测前走查。
-
-## English Notes
-
-Great UI quality depends on design-engineering collaboration. Shared component and interaction rules reduce rework.
-
-Adopt a simple cadence: align before build, verify during build, review before QA.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-Design Handoff Checklist
-1. Screen states defined
-2. Spacing and typography tokens defined
-3. Interaction and transitions defined
-```
+```swift
+import SwiftUI
 
+struct Chapter41ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("与设计协作")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 只对齐静态稿，不对齐状态稿
-- 交互规则口头约定无记录
-- 提测前没有联合走查
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了开发与设计协作的最小流程。
-
-What you learned: you can now run a practical design handoff workflow.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

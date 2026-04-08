@@ -1,53 +1,40 @@
-# 35. App Intents 入门
+﻿# 35. App Intents 入门
 
 ## 学习目标
 
-- 理解 App Intents 的作用和场景
-- 学会暴露一个最小可调用动作
-- 建立“系统入口复用能力”的思维
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-App Intents 让系统可以调用你应用的动作，例如快捷指令、Siri 或系统自动化入口。这让你的功能不再只存在于 App 内部页面。
+把能力暴露给系统自动化入口。
 
-入门阶段先做一个简单动作，例如“快速新增任务”。关键是定义清晰输入和预期输出，让系统调用行为稳定可预测。
-
-当核心动作被标准化后，你的应用可组合能力会明显增强。
-
-## English Notes
-
-App Intents allow system surfaces like Shortcuts and Siri to trigger app actions. This extends your app capabilities beyond in-app navigation.
-
-Start with one simple intent, such as quickly creating a task. Define clear inputs and predictable output behavior.
-
-Well-defined intents improve automation and reusability across the Apple ecosystem.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
-import AppIntents
+import SwiftUI
 
-struct AddTaskIntent: AppIntent {
-    static var title: LocalizedStringResource = "Add Task"
-
-    @Parameter(title: "Title")
-    var title: String
-
-    func perform() async throws -> some IntentResult {
-        // Save task here.
-        return .result()
+struct Chapter35ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("App Intents 入门")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 意图参数定义含糊，导致调用体验不稳定
-- 动作副作用不透明，难以调试
-- 没有区分“用户入口”和“系统入口”
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 App Intents 的最小落地方式，以及它对应用可组合性的意义。
-
-What you learned: you can now expose basic app actions to system automation with App Intents.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

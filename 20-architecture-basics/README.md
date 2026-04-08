@@ -1,67 +1,40 @@
-# 20. 架构基础：分层与职责
+﻿# 20. 架构基础：分层与职责
 
 ## 学习目标
 
-- 理解为什么 SwiftUI 项目需要最小架构约束
-- 学会区分视图层、状态层、数据层职责
-- 能把小项目从“能跑”提升到“可维护”
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-随着功能增长，把所有代码都写进 View 会越来越难维护。架构不是为了复杂，而是为了让职责边界清晰，让多人协作和后续迭代更顺畅。
+让项目从能跑走向可维护。
 
-入门阶段可采用简单三层思路：View 负责展示和交互触发，State/Model 负责状态与规则，Data 层负责存储或请求。先做到这一步，就能避免大多数早期混乱。
-
-不要急着套完整企业架构，先让代码具备可读、可测、可扩展的基本形态。
-
-## English Notes
-
-As your app grows, placing everything inside views becomes hard to maintain. Architecture should reduce complexity, not increase it, by making responsibilities explicit.
-
-A practical beginner structure is three layers: View for presentation, State/Model for rules, and Data layer for storage or API interaction.
-
-You do not need enterprise-level patterns yet. Focus on readable, testable, and extendable code boundaries.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct TodoState {
-    var items: [String] = []
-
-    mutating func add(_ title: String) {
-        guard !title.isEmpty else { return }
-        items.append(title)
-    }
-}
-
-struct TodoView: View {
-    @State private var state = TodoState()
-    @State private var input = ""
-
+struct Chapter20ExampleView: View {
     var body: some View {
-        VStack {
-            TextField("New item", text: $input)
-            Button("Add") {
-                state.add(input)
-                input = ""
-            }
-            List(state.items, id: \.self) { Text($0) }
+        VStack(spacing: 12) {
+            Text("架构基础：分层与职责")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
         .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 把业务规则写散在多个按钮点击里
-- 视图层直接处理复杂数据逻辑
-- 一开始就追求复杂架构模板
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了最小可行的架构分层思路，为项目长期维护打下基础。
-
-What you learned: you can now separate responsibilities in SwiftUI code with a practical lightweight architecture.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

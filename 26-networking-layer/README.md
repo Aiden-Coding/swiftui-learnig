@@ -1,54 +1,40 @@
-# 26. 网络层入门：请求、解码与分层
+﻿# 26. 网络层入门
 
 ## 学习目标
 
-- 理解 SwiftUI 项目中网络层的最小职责
-- 学会基础请求与 JSON 解码流程
-- 能把网络逻辑从视图中拆分出来
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-网络请求不应该直接塞在 View 里，否则会让界面层难以维护。更好的方式是把请求和解码放到独立服务层，再把结果交给状态层和视图层。
+把请求与界面逻辑解耦。
 
-入门时建议先设计最小网络层：一个 API client、一个解码模型、一个调用入口。只要分层清晰，后续扩展分页、重试和鉴权会更容易。
-
-重点是边界清楚，不是代码多。
-
-## English Notes
-
-Networking code should not live directly inside views. A cleaner approach is to move request and decoding logic into a service layer and pass results back to state and UI.
-
-Start with a minimal setup: one API client, one decoding model, and one call path. With clear boundaries, advanced features become easier later.
-
-Clarity matters more than complexity here.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
-import Foundation
+import SwiftUI
 
-struct Post: Decodable, Identifiable {
-    let id: Int
-    let title: String
-}
-
-final class APIClient {
-    func fetchPosts() async throws -> [Post] {
-        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
-        let (data, _) = try await URLSession.shared.data(from: url)
-        return try JSONDecoder().decode([Post].self, from: data)
+struct Chapter26ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("网络层入门")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
     }
 }
 ```
-
 ## 常见错误
 
-- 把请求、解析、展示全写在一个视图里
-- 模型字段与 JSON 不匹配却没有及时验证
-- 没有为失败状态留出 UI 反馈
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 SwiftUI 项目里最小可维护的网络层思路。
-
-What you learned: you can now separate request logic from UI with a simple networking layer.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

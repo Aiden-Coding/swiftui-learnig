@@ -1,70 +1,40 @@
-# 07. 导航：NavigationStack、页面跳转
+﻿# 07. 导航：NavigationStack 与页面跳转
 
 ## 学习目标
 
-- 理解 SwiftUI 中导航容器的作用
-- 学会使用 `NavigationStack` 和 `NavigationLink`
-- 能构建一个简单的列表到详情页跳转
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-多数应用都不是单页面结构，因此导航是 SwiftUI 基础里非常重要的一部分。现代 SwiftUI 中，最推荐的新手使用 `NavigationStack` 来承载页面层级。
+构建多页面跳转流程。
 
-你可以把 `NavigationStack` 理解为一个页面栈。进入新页面时，系统把它压入栈中；返回时，再把它弹出。`NavigationLink` 则是最常见的跳转方式。
-
-在基础阶段，你先学会“从一个页面进入另一个页面”就够了。等熟悉以后，再继续学习更复杂的路径状态和深层导航控制。
-
-## English Notes
-
-Most apps are not single-screen apps, so navigation is an important SwiftUI fundamental. In modern SwiftUI, beginners should prefer `NavigationStack` for page hierarchy.
-
-You can think of a navigation stack as a stack of screens. A new screen is pushed when you move forward, and popped when you go back. `NavigationLink` is the standard way to trigger that transition.
-
-At this level, learning how to move from one screen to another is enough. More advanced path-based navigation can come later.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
 import SwiftUI
 
-struct NavigationExampleView: View {
-    let topics = ["Text", "Layout", "State"]
-
+struct Chapter07ExampleView: View {
     var body: some View {
-        NavigationStack {
-            List(topics, id: \.self) { topic in
-                NavigationLink(topic) {
-                    TopicDetailView(topic: topic)
-                }
-            }
-            .navigationTitle("SwiftUI Topics")
+        VStack(spacing: 12) {
+            Text("导航：NavigationStack 与页面跳转")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
         }
-    }
-}
-
-struct TopicDetailView: View {
-    let topic: String
-
-    var body: some View {
-        Text("You selected \(topic)")
-            .font(.title2)
-            .navigationTitle(topic)
+        .padding()
     }
 }
 ```
-
-这个例子演示了一个列表页和详情页之间最典型的导航关系。
-
-This example demonstrates the most common beginner navigation pattern: a list screen that pushes to a detail screen.
-
 ## 常见错误
 
-- 还在查旧资料时误用了过时导航 API
-- 只看跳转是否成功，没有设置标题导致层级不清晰
-- 把导航和模态展示混为一谈
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了用 `NavigationStack` 和 `NavigationLink` 构建最基础的页面跳转结构。
-
-What you learned: you can now build a basic multi-screen flow using `NavigationStack` and `NavigationLink`.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

@@ -1,46 +1,40 @@
-# 36. 上线后运营：反馈、迭代与稳定性
+﻿# 36. 上线后运营与迭代
 
 ## 学习目标
 
-- 理解发布后工作的核心重点
-- 学会建立基础反馈闭环
-- 能用数据驱动版本迭代优先级
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-应用上线不是终点，而是新一轮优化的开始。上线后最重要的是持续观察：崩溃、性能、核心流程转化、用户反馈。
+建立发布后的持续改进机制。
 
-建议建立一个轻量运营节奏：每周看一次核心指标，每个版本做一次问题复盘，每次迭代只抓最关键的少量改进点。
-
-把反馈转成可执行任务，远比收集大量意见更重要。
-
-## English Notes
-
-Release is the beginning of continuous improvement, not the end. Post-release focus should include crash trends, performance, funnel metrics, and user feedback.
-
-Use a lightweight cadence: review key metrics weekly, run a short retrospective per release, and prioritize a few high-impact improvements.
-
-Turning feedback into actionable tasks matters more than collecting raw comments.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-Post-Release Weekly Checklist
-1. Review crash and ANR trends
-2. Check core funnel conversion
-3. Summarize top user feedback themes
-4. Prioritize next sprint fixes
-5. Publish internal release notes
-```
+```swift
+import SwiftUI
 
+struct Chapter36ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("上线后运营与迭代")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 上线后只关注新功能，不看稳定性
-- 指标很多但没有明确优先级
-- 反馈收集后没有进入迭代流程
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了上线后持续运营的基本方法，能够让产品迭代更稳更快。
-
-What you learned: you can now operate a simple post-release improvement loop with clear priorities.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

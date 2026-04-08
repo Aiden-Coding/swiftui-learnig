@@ -1,39 +1,40 @@
-# 40. Feature Flag 基础
+﻿# 40. Feature Flag 基础
 
 ## 学习目标
 
-- 理解 Feature Flag 的用途
-- 学会用开关控制功能发布
-- 能降低新功能上线风险
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-Feature Flag 可以让你在不重新发版的情况下控制功能开关，是灰度发布和应急回滚的重要手段。
+安全控制新功能灰度发布。
 
-入门先从本地配置开关开始，后续再接远程配置平台。
-
-## English Notes
-
-Feature flags let you control feature rollout without full releases. They are useful for gradual rollout and fast rollback.
-
-Start with local toggles before remote config integration.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
-enum FeatureFlag {
-    static let newProfile = false
+import SwiftUI
+
+struct Chapter40ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("Feature Flag 基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
 }
 ```
-
 ## 常见错误
 
-- 开关长期不清理
-- 开关命名不清晰
-- 功能逻辑与开关逻辑耦合过深
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 Feature Flag 的基础实践。
-
-What you learned: you can now gate new features safely with simple flags.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

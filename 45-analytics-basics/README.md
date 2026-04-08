@@ -1,39 +1,40 @@
-# 45. 数据埋点基础
+﻿# 45. 数据埋点基础
 
 ## 学习目标
 
-- 理解埋点在产品优化中的作用
-- 学会定义关键事件和属性
-- 能建立最小埋点方案
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-没有埋点就难以判断功能是否真的被使用。埋点应服务决策，不是越多越好。
+用关键事件支持产品决策。
 
-入门建议先覆盖关键漏斗：进入、点击、完成、退出。
-
-## English Notes
-
-Without analytics, product decisions rely on guesses. Instrumentation should answer specific product questions.
-
-Start with key funnel events first.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
 ```swift
-struct Analytics {
-    static func track(_ event: String, properties: [String: String] = [:]) { }
+import SwiftUI
+
+struct Chapter45ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("数据埋点基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
 }
 ```
-
 ## 常见错误
 
-- 事件命名不统一
-- 关键路径未埋点
-- 埋点没有版本管理
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了埋点设计的最小闭环。
-
-What you learned: you can now define and track meaningful product events.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。

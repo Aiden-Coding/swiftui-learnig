@@ -1,41 +1,40 @@
-# 46. 实验与 A/B 测试基础
+﻿# 46. 实验与 A/B 测试基础
 
 ## 学习目标
 
-- 理解实验方法在产品迭代中的价值
-- 学会定义实验目标与指标
-- 能避免常见实验结论误判
+- 了解本章核心概念与使用场景。
+- 掌握最小可运行实现方式。
+- 能把本章内容迁移到自己的项目中。
 
 ## 中文讲解
 
-A/B 测试帮助我们用数据验证方案，而不是靠直觉。实验必须先定义目标和成功指标，再执行流量分配。
+以数据验证方案有效性。
 
-入门阶段要特别注意样本量和实验周期，否则容易得出不可靠结论。
-
-## English Notes
-
-Experiments validate ideas with data instead of intuition. Define goal and success metrics before rollout.
-
-Watch sample size and duration to avoid false conclusions.
+本章建议先完成最小示例，再尝试做一个小改动，例如新增一个状态、补一个交互或调整一个布局。通过“先跑通再迭代”的方式，你会更快建立稳定的 SwiftUI 心智模型。
 
 ## 示例代码
 
-```text
-Experiment Card
-- Hypothesis
-- Primary metric
-- Guardrail metrics
-- Start and end date
-```
+```swift
+import SwiftUI
 
+struct Chapter46ExampleView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("实验与 A/B 测试基础")
+                .font(.headline)
+            Text("请在本章中替换为你的业务示例")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+    }
+}
+```
 ## 常见错误
 
-- 指标很多但没有主指标
-- 实验中途频繁改规则
-- 忽略负向影响指标
+- 只看不练，导致知识点无法迁移到真实页面。
+- 一开始追求复杂实现，反而难以定位问题。
+- 没有总结本章边界，后续容易混淆相近概念。
 
 ## 本章小结
 
-你学会了 A/B 测试最基础的执行框架。
-
-What you learned: you can now plan simple product experiments with measurable outcomes.
+你已经完成本章的核心入门。下一步建议把示例改造成一个与你项目相关的小功能，再进入下一章。
