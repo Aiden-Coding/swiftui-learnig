@@ -8,120 +8,79 @@
 
 ## 场景引入（你会在哪遇到它）
 
-多人协作时 UI 风格不统一。
+- 理解：知道这章解决什么问题。
 
 ## 本章术语先看懂
 
-- 关键词：组件 API、复用、约束
-- 一句话理解：沉淀团队可复用 UI 资产。
+- 关键词：核心概念、实战迁移
+- 一句话理解：围绕本章主题完成一个可运行业务片段。
 
 ## 手把手步骤（每一步都有预期结果）
 
 1. 创建视图 Chapter29PracticeView。  
-   预期结果：工程能编译，页面可显示空白容器。
+   预期结果：工程能编译，页面可显示容器。
 2. 粘贴完整示例代码并运行。  
-   预期结果：能看到标题、按钮、计数和说明区。
-3. 点击“点我 +1”。  
-   预期结果：计数数字递增。
-4. 点击“显示说明/隐藏说明”。  
-   预期结果：说明区出现或消失。
-5. 修改标题文案并再次运行。  
-   预期结果：你改的文案正确显示。
-6. 完成“章节小测”和“练习任务”。  
-   预期结果：你能不看文档复现主要代码。
+   预期结果：页面显示核心交互和数据反馈。
+3. 做一次交互操作（点击/输入/切换）。  
+   预期结果：界面状态随操作变化。
+4. 修改一个文案或样式后重跑。  
+   预期结果：你能稳定控制页面输出。
+5. 完成章节小测与练习任务。  
+   预期结果：可以不看文档复现关键代码。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-struct Chapter29PracticeView: View {
-    @State private var counter = 0
-    @State private var showDetail = false
+struct PrimaryButton: View {
+    let title: String
+    let action: () -> Void
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("第 29 章：组件库入门")
-                    .font(.headline)
-
-                Text("核心目标：沉淀团队可复用 UI 资产。")
-                    .foregroundStyle(.secondary)
-
-                HStack(spacing: 12) {
-                    Button("点我 +1") {
-                        counter += 1
-                    }
-                    .buttonStyle(.borderedProminent)
-
-                    Button(showDetail ? "隐藏说明" : "显示说明") {
-                        showDetail.toggle()
-                    }
-                    .buttonStyle(.bordered)
-                }
-
-                Text("当前计数：\(counter)")
-                    .font(.title3)
-
-                if showDetail {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("学习提示")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                        Text("组件要少而精，避免参数爆炸。")
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
-                    }
-                    .padding(12)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(.blue.opacity(0.08))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                }
-            }
-            .padding()
-        }
+        Button(title, action: action)
+            .buttonStyle(.borderedProminent)
+            .tint(.blue)
     }
 }
 ```
 
 ## 代码拆解（小白重点）
 
-- @State private var counter = 0：存“会变”的数据。
-- @State private var showDetail = false：控制视图是否显示。
-- Button("点我 +1")：按钮动作里改状态，界面自动刷新。
-- if showDetail：根据状态条件渲染内容。
-- ScrollView + VStack：保证内容多时也能滚动查看。
+- 封装高频按钮风格。
+- 调用方只关心标题和动作。
+- 组件库从高频组件开始。
 
 ## 新手排错流程（建议照着做）
 
 1. 先看第一条报错，不要一次改很多地方。
 2. 检查括号、引号、逗号是否成对。
-3. 检查状态变量名字是否拼写一致。
-4. 只撤回你最近改的 1-2 处代码。
-5. 回到最小可运行版本，再逐步加回改动。
+3. 检查状态变量名称是否一致。
+4. 回退最近 1-2 处改动再重跑。
+5. 回到最小可运行状态后再逐步添加。
 
 ## 章节小测（带答案）
 
 ### 题 1
-@State 的核心作用是什么？
+本章示例里，哪个状态变量会驱动界面变化？
 
-参考答案：用于保存当前视图拥有的可变状态，状态变化会触发界面更新。
+参考答案：由 @State 标注的变量会驱动界面更新。
 
 ### 题 2
-为什么要先跑通最小示例再做扩展？
+为什么建议先跑通最小示例再扩展？
 
-参考答案：先确认基础链路正确，再逐步加复杂度，能更快定位问题。
+参考答案：先确认基础链路正确，扩展时更容易定位问题。
 
 ### 题 3
-如果按钮点击后界面没变化，优先检查什么？
+如果交互后 UI 不更新，优先检查什么？
 
-参考答案：是否真的修改了绑定到界面的状态变量，以及是否在当前显示视图里修改。
+参考答案：是否修改了绑定到界面的状态，是否操作了正确视图。
 
 ## 练习任务
 
 - 基础练习：抽一个 PrimaryButton 统一按钮样式。
-- 加强练习：增加一个 TextField，把输入内容实时显示在页面。
-- 挑战练习：把按钮区拆成子视图，并通过参数/绑定通信。
+- 加强练习：增加一个输入控件，并把结果实时显示。
+- 挑战练习：把交互区抽成子视图并通过参数/绑定通信。
 
 ## 复盘模板（建议每章都写）
 
@@ -132,8 +91,8 @@ struct Chapter29PracticeView: View {
 
 ## 本章学习提示
 
-组件要少而精，避免参数爆炸。
+
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：形成组件沉淀方法。。如果还不稳，先重复“手把手步骤”一次，再进入下一章。
+本章结束后，你应该已经能完成：把本章能力迁移到真实项目。 如果还不稳，先重复“手把手步骤”一次，再进入下一章。
