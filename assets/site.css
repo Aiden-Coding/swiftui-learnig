@@ -143,14 +143,18 @@ a {
 .card-grid,
 .track-list,
 .week-grid,
-.quick-links__grid {
+.quick-links__grid,
+.project-grid,
+.faq-list,
+.stats-strip {
   display: grid;
   gap: 18px;
 }
 
 .card-grid,
 .track-list,
-.week-grid {
+.week-grid,
+.stats-strip {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
@@ -170,6 +174,8 @@ a {
 .learning-path,
 .roadmap,
 .quick-links,
+.projects,
+.faq,
 .chapter-library {
   margin-top: 30px;
 }
@@ -203,6 +209,40 @@ a {
 .quick-links__grid,
 .chapter-card-list {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.project-grid,
+.faq-list {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.stat-card,
+.project-card,
+.faq-item {
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid rgba(223, 215, 199, 0.9);
+  box-shadow: var(--shadow);
+}
+
+.stat-card strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--brand);
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.stat-card span,
+.project-card p,
+.faq-item p {
+  color: var(--muted);
+}
+
+.project-card h3,
+.faq-item h3 {
+  margin: 0 0 10px;
 }
 
 .quick-link,
@@ -301,6 +341,36 @@ a {
 
 .markdown-shell {
   padding: 28px;
+}
+
+.chapter-pagination {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.pagination-card {
+  display: block;
+  padding: 18px;
+  border-radius: 16px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.pagination-card span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pagination-card strong {
+  line-height: 1.45;
 }
 
 .markdown-body h1,

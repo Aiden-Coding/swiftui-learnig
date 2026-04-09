@@ -59,6 +59,7 @@
     var navNode = document.getElementById("chapter-nav");
     var titleNode = document.getElementById("chapter-title");
     var metaNode = document.getElementById("chapter-meta");
+    var paginationNode = document.getElementById("chapter-pagination");
 
     if (!contentNode || !navNode || !titleNode || !metaNode) {
       return;
@@ -88,6 +89,31 @@
       link.textContent = String(chapter.number).padStart(2, "0") + " " + chapter.title;
       navNode.appendChild(link);
     });
+
+    var currentIndex = allChapters.findIndex(function (chapter) {
+      return chapter.path === current.path;
+    });
+    var prevChapter = currentIndex > 0 ? allChapters[currentIndex - 1] : null;
+    var nextChapter = currentIndex < allChapters.length - 1 ? allChapters[currentIndex + 1] : null;
+
+    if (paginationNode) {
+      paginationNode.innerHTML = "";
+      if (prevChapter) {
+        var prevLink = document.createElement("a");
+        prevLink.className = "pagination-card";
+        prevLink.href = buildChapterUrl(prevChapter.path);
+        prevLink.innerHTML = "<span>上一章</span><strong>" + String(prevChapter.number).padStart(2, "0") + " " + prevChapter.title + "</strong>";
+        paginationNode.appendChild(prevLink);
+      }
+
+      if (nextChapter) {
+        var nextLink = document.createElement("a");
+        nextLink.className = "pagination-card";
+        nextLink.href = buildChapterUrl(nextChapter.path);
+        nextLink.innerHTML = "<span>下一章</span><strong>" + String(nextChapter.number).padStart(2, "0") + " " + nextChapter.title + "</strong>";
+        paginationNode.appendChild(nextLink);
+      }
+    }
 
     fetch(path)
       .then(function (response) {
