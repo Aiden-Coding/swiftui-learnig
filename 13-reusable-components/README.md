@@ -1,101 +1,151 @@
-﻿# 13. 组件拆分与复用
+﻿# 13. 组件复用：把重复界面抽成可复用模块
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 理解什么时候应该抽组件。
+- 学会通过参数让组件显示不同内容。
+- 能把一段重复卡片界面拆成独立视图。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 组件拆分与复用，目标是把这个能力直接用到真实页面里。
+当页面开始变长时，最容易出现的问题就是重复代码越来越多。今天复制一块卡片，明天再复制一块按钮区，很快一个文件就会变得又长又难改。
+
+组件复用的目的，不是为了“显得专业”，而是为了减少重复，让代码更清楚。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 组件拆分与复用 的核心用法。
+- `组件`：可独立复用的一块界面。
+- `参数化`：通过传入不同数据，让同一个组件显示不同内容。
+- `复用`：一份代码多处使用。
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter13CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+当同样的界面结构开始重复出现时，就该考虑拆组件了。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-struct Chapter13CaseView: View {
-    @State private var input = ""
-    @State private var items: [String] = []
+struct ReusableCourseListView: View {
+    let courses: [CourseSummary] = [
+        CourseSummary(title: "SwiftUI 入门", teacher: "林老师", level: "基础"),
+        CourseSummary(title: "状态管理实战", teacher: "周老师", level: "进阶"),
+        CourseSummary(title: "列表与导航项目训练", teacher: "陈老师", level: "基础")
+    ]
 
     var body: some View {
-        VStack(spacing: 10) {
-            TextField("输入内容", text: $input)
-                .textFieldStyle(.roundedBorder)
-            Button("添加") {
-                guard !input.isEmpty else { return }
-                items.append(input)
-                input = ""
+        ScrollView {
+            VStack(spacing: 12) {
+                ForEach(courses) { course in
+                    CourseCard(course: course)
+                }
             }
-            List(items, id: \.self) { Text($0) }
+            .padding()
         }
-        .padding()
+        .background(Color(.secondarySystemBackground))
     }
 }
+
+struct CourseSummary: Identifiable {
+    let id = UUID()
+    let title: String
+    let teacher: String
+    let level: String
+}
+
+struct CourseCard: View {
+    let course: CourseSummary
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text(course.title)
+                    .font(.headline)
+
+                Spacer()
+
+                Text(course.level)
+                    .font(.caption)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(course.level == "基础" ? Color.green.opacity(0.15) : Color.orange.opacity(0.15))
+                    .clipShape(Capsule())
+            }
+
+            Text("讲师：\(course.teacher)")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            Button("开始学习") {
+                print("开始学习 \(course.title)")
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .shadow(color: .black.opacity(0.06), radius: 8, y: 4)
+    }
+}
+
+#Preview {
+    ReusableCourseListView()
+}
 ```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- `ReusableCourseListView` 负责提供一组课程数据。
+- `CourseCard` 负责定义“每张卡片怎么长”。
+- 以后只要传不同的 `course`，同一个组件就能重复使用。
 
-## 新手排错流程（建议照着做）
+## 什么时候该抽组件
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+- 同一段 UI 重复出现。
+- 某块界面有明确的独立职责。
+- 一个页面太长，阅读压力变大。
+- 这块内容未来还可能在别的地方复用。
+
+## 新手常见误区
+
+- 为了抽组件而抽组件，导致代码被拆得太碎。
+- 组件参数设计混乱，越传越多。
+- 逻辑和展示全写进一个巨型组件里，还是不清楚。
+
+## 新手排错流程
+
+1. 卡片不显示时，先检查 `ForEach` 的数据是否为空。
+2. 数据错位时，检查传入的参数是不是当前项。
+3. 文件还是很乱时，检查组件职责是否划分清楚。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+抽组件最常见的好处是什么？
+
+参考答案：减少重复代码，让界面结构更清楚。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+父视图和子组件通常怎么分工？
+
+参考答案：父视图组织数据，子组件负责展示。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+什么时候不一定需要抽组件？
+
+参考答案：当界面只出现一次，而且结构非常简单时。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
-
-## 本章学习提示
-
-先跑通最小示例，再逐步加功能。
+- 基础练习：给课程卡片增加“学习人数”。
+- 加强练习：把讲师信息抽成更小的徽标组件。
+- 挑战练习：给 `CourseCard` 增加可配置的按钮文案。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+学完这章后，你应该已经有了一个很重要的习惯：看到重复界面时，会主动考虑如何拆成可复用组件。

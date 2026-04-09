@@ -1,101 +1,133 @@
-﻿# 11. 动画基础：withAnimation 与 transition
+﻿# 11. 动画基础：让界面动起来
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 理解 SwiftUI 动画的本质是“状态变化 + 过渡效果”。
+- 学会使用 `withAnimation`、`.animation`、`transition`。
+- 能做出一个基础的展开收起卡片。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 动画基础：withAnimation 与 transition，目标是把这个能力直接用到真实页面里。
+如果一个页面里的内容突然出现、突然消失，用户会觉得界面很“硬”。动画的作用不是炫技，而是帮助用户理解：刚刚发生了什么变化，内容是从哪里来的，又去了哪里。
+
+这一章我们不追求花哨，而是先学会最常见的一类动画：点击按钮后，卡片平滑展开，再点击时平滑收起。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 动画基础：withAnimation 与 transition 的核心用法。
+- `withAnimation`：把某次状态变化包起来，让它带动画。
+- `.animation(..., value:)`：当某个值变化时，自动为相关界面变化加动画。
+- `transition`：视图插入和移除时的过渡方式。
+- `easeInOut`：先慢后快再慢的常见动画曲线。
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter11CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+动画不是“让视图自己动”，而是“当状态改变时，让界面变化更平滑地发生”。
+
+## 手把手操作步骤
+
+1. 新建 `ExpandableCardView.swift`。
+2. 粘贴下面代码并运行。
+3. 点击按钮，观察卡片详情出现和消失的过程。
+4. 修改动画时长，再次运行对比变化。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-struct Chapter11CaseView: View {
-    @State private var input = ""
-    @State private var items: [String] = []
+struct ExpandableCardView: View {
+    @State private var isExpanded = false
 
     var body: some View {
-        VStack(spacing: 10) {
-            TextField("输入内容", text: $input)
-                .textFieldStyle(.roundedBorder)
-            Button("添加") {
-                guard !input.isEmpty else { return }
-                items.append(input)
-                input = ""
+        VStack(spacing: 16) {
+            Button(isExpanded ? "收起详情" : "展开详情") {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isExpanded.toggle()
+                }
             }
-            List(items, id: \.self) { Text($0) }
+            .buttonStyle(.borderedProminent)
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("SwiftUI 学习卡片")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+
+                Text("点击按钮后查看本节课程说明。")
+                    .foregroundStyle(.secondary)
+
+                if isExpanded {
+                    Divider()
+
+                    Text("动画可以帮助用户理解界面变化，而不是只为了看起来酷。")
+                        .font(.subheadline)
+
+                    Text("这一块内容会带着过渡效果出现和消失。")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(color: .black.opacity(0.08), radius: 10, y: 4)
         }
         .padding()
+        .background(Color(.secondarySystemBackground))
     }
 }
+
+#Preview {
+    ExpandableCardView()
+}
 ```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- `@State private var isExpanded = false` 表示当前卡片是否展开。
+- `withAnimation` 让这次状态切换带上动画。
+- `if isExpanded` 控制详情内容是否存在。
+- `transition` 负责“出现/消失”时的过渡效果。
 
-## 新手排错流程（建议照着做）
+## 新手常见误区
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+- 写了 `transition` 但没有 `withAnimation`，结果内容还是瞬间切换。
+- 把动画挂在过大的视图范围上，导致不该动的内容也跟着动。
+- 一上来就追求复杂动画，反而把状态逻辑写乱。
+
+## 新手排错流程
+
+1. 按钮点了没变化时，先确认 `isExpanded` 是否真的改变。
+2. 有变化但没动画时，检查是否少了 `withAnimation`。
+3. 过渡方向不对时，检查 `transition` 的设置。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+SwiftUI 里的动画最常跟什么一起出现？
+
+参考答案：跟状态变化一起出现。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+`transition` 最适合搭配什么场景？
+
+参考答案：视图被插入或移除的场景，比如 `if` 条件渲染。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+为什么初学阶段更推荐先用 `withAnimation`？
+
+参考答案：因为更直观，容易看清楚是哪次状态变化触发了动画。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
-
-## 本章学习提示
-
-先跑通最小示例，再逐步加功能。
+- 基础练习：把详情改成从底部出现。
+- 加强练习：增加一个会旋转的箭头图标。
+- 挑战练习：做一个 FAQ 问答展开列表。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+学完这章后，你应该已经理解：SwiftUI 动画的核心不是手动操作坐标，而是让状态变化更自然地体现在界面上。

@@ -2,101 +2,100 @@
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 理解 SwiftUI 多页面结构是怎么搭起来的。
+- 学会使用 `NavigationStack` 和 `NavigationLink`。
+- 能做出“列表页 -> 详情页”的基础跳转。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 导航：NavigationStack 与页面跳转，目标是把这个能力直接用到真实页面里。
+如果一个 App 只有一个页面，那几乎没法完成真实业务。你一定会遇到点课程进入详情页、点设置项进入子设置页这类场景，所以导航是基础能力。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 导航：NavigationStack 与页面跳转 的核心用法。
+- `NavigationStack`：导航容器，管理页面层级
+- `NavigationLink`：点击后进入目标页面
+- `navigationTitle`：设置页面标题
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter07CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+`NavigationStack` 负责整个导航环境，`NavigationLink` 负责单次跳转动作。
+
+## 手把手操作步骤
+
+1. 创建 `TopicNavigationView`。
+2. 粘贴代码并运行。
+3. 点击任意一行，观察是否进入新页面。
+4. 再把主题数量增加到 5 个。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-struct Chapter07CaseView: View {
-    @State private var tapped = false
+struct TopicNavigationView: View {
+    let topics = ["Layout", "State", "Forms"]
 
     var body: some View {
-        VStack(spacing: 12) {
-            Text("第 07 章：导航：NavigationStack 与页面跳转")
-                .font(.headline)
-
-            Text(tapped ? "状态：已触发" : "状态：未触发")
-                .foregroundStyle(.secondary)
-
-            Button("点击体验") {
-                tapped.toggle()
+        NavigationStack {
+            List(topics, id: \.self) { topic in
+                NavigationLink(topic) {
+                    Text("You selected \(topic)")
+                        .navigationTitle(topic)
+                }
             }
-            .buttonStyle(.borderedProminent)
+            .navigationTitle("Topics")
         }
-        .padding()
     }
 }
+
+#Preview {
+    TopicNavigationView()
+}
 ```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- `NavigationStack` 是导航的根容器。
+- `List(topics, id: \.self)` 显示主题列表。
+- `NavigationLink` 定义点击后的目标页面。
+- `navigationTitle` 用于明确当前层级标题。
 
-## 新手排错流程（建议照着做）
+## 新手排错流程
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+1. 点击没跳转时，先检查有没有包在 `NavigationStack` 里。
+2. 标题不对时，检查详情页里有没有设置 `navigationTitle`。
+3. 层级混乱时，检查是不是嵌套了过多导航容器。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+`NavigationStack` 是干什么的？
+
+参考答案：提供导航层级环境。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+`NavigationLink` 的作用是什么？
+
+参考答案：点击后进入目标页面。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+为什么详情页里经常设置 `navigationTitle`？
+
+参考答案：让用户清楚自己当前所在的页面层级。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
+- 基础练习：把主题从 3 个增加到 5 个。
+- 加强练习：在详情页里加上图标和说明文字。
+- 挑战练习：把详情页抽成独立的 `TopicDetailView`。
 
 ## 本章学习提示
 
-先跑通最小示例，再逐步加功能。
+一开始先掌握最基础的“点进去、能回来”。复杂导航以后再学，不要一上来就把自己绕晕。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+这一章之后，你已经具备搭建多页面基础流程的能力了。对 App 来说，这一步非常关键。

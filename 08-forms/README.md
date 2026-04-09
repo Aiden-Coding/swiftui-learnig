@@ -2,101 +2,113 @@
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 学会处理用户输入。
+- 理解表单控件为什么几乎都离不开状态绑定。
+- 能做一个基础设置页面。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 表单与输入：TextField、Toggle、Picker，目标是把这个能力直接用到真实页面里。
+很多真实界面都不是“只看不动”的，它们需要用户输入内容，比如修改昵称、开关提醒、选择等级。所以表单这一章，是把“状态”和“界面交互”真正连接起来的一章。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 表单与输入：TextField、Toggle、Picker 的核心用法。
+- `TextField`：文本输入框
+- `Toggle`：开关控件
+- `Picker`：选项选择器
+- `Form`：表单容器
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter08CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+表单控件本质上就是：用户改状态，界面读状态。
+
+## 手把手操作步骤
+
+1. 创建 `SettingsFormView`。
+2. 粘贴代码并运行。
+3. 输入昵称、切换开关、选择等级。
+4. 观察预览区是否同步变化。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-struct Chapter08CaseView: View {
-    @State private var tapped = false
+struct SettingsFormView: View {
+    @State private var name = ""
+    @State private var notificationsOn = true
+    @State private var level = "Beginner"
+
+    let levels = ["Beginner", "Intermediate", "Advanced"]
 
     var body: some View {
-        VStack(spacing: 12) {
-            Text("第 08 章：表单与输入：TextField、Toggle、Picker")
-                .font(.headline)
+        Form {
+            TextField("Nickname", text: $name)
 
-            Text(tapped ? "状态：已触发" : "状态：未触发")
-                .foregroundStyle(.secondary)
+            Toggle("Notifications", isOn: $notificationsOn)
 
-            Button("点击体验") {
-                tapped.toggle()
+            Picker("Level", selection: $level) {
+                ForEach(levels, id: \.self) { level in
+                    Text(level)
+                }
             }
-            .buttonStyle(.borderedProminent)
+
+            Section("Preview") {
+                Text("Name: \(name.isEmpty ? "未填写" : name)")
+                Text("Notifications: \(notificationsOn ? "开启" : "关闭")")
+                Text("Level: \(level)")
+            }
         }
-        .padding()
     }
 }
+
+#Preview {
+    SettingsFormView()
+}
 ```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- `TextField` 绑定文本状态。
+- `Toggle` 绑定布尔状态。
+- `Picker` 绑定当前选中值。
+- 预览区直接读取这些状态，帮助你看到结果。
 
-## 新手排错流程（建议照着做）
+## 新手排错流程
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+1. 输入框能输入但预览不变时，检查是不是用的同一个状态变量。
+2. 开关点了没变化时，检查绑定是不是写成了普通值。
+3. Picker 不正常时，检查 `selection` 类型是否匹配。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+为什么表单控件几乎都要绑定状态？
+
+参考答案：因为用户输入后要写回数据，界面再根据数据刷新。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+`TextField` 后面为什么写 `$name`？
+
+参考答案：因为它需要的是绑定，而不是单纯的值。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+`Toggle` 最适合绑定什么类型？
+
+参考答案：`Bool`。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
+- 基础练习：增加一个“是否公开资料”的开关。
+- 加强练习：把当前设置汇总成一段摘要。
+- 挑战练习：增加一个“重置表单”按钮。
 
 ## 本章学习提示
 
-先跑通最小示例，再逐步加功能。
+表单最核心的不是控件本身，而是“控件和状态的绑定关系”。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+这一章结束后，你已经可以做最基础的设置页、资料页、偏好页了。这是从静态界面走向可交互页面的重要一步。
