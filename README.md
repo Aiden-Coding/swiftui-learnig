@@ -38,6 +38,117 @@
 4. 遇到报错先看章节里的“排错流程”，再动手查问题。
 5. 不要急着同时开很多项目，先做完一个小而完整的练习闭环。
 
+## 新手学习路线
+
+如果你不确定从哪里开始，可以直接照这个顺序走：
+
+1. 先完成 `01-10`，把界面、布局、状态、列表、导航、表单这些基础能力打稳。
+2. 再完成 `11-20`，把异步、组件复用、生命周期、数据流、持久化和小项目串起来。
+3. 接着看 `21-30`，开始建立工程化意识，不再只停留在“页面能跑”。
+4. 最后完成 `31-50`，把产品、平台、协作和长期成长路线补完整。
+
+如果你中途开始觉得内容变难，不是退步了，而是进入了“开始接近真实开发”的阶段。
+
+## 4 周学习计划
+
+如果你希望有一条更明确的节奏，可以参考这份 4 周路线。
+
+### 第 1 周：把基础页面能力建立起来
+
+目标：完成 `01-08`
+
+重点：
+
+- 理解 SwiftUI 基本结构
+- 学会布局和修饰符
+- 理解状态驱动界面
+- 能写列表、导航、表单
+
+建议成果：
+
+- 做出一个简单资料页或设置页
+
+### 第 2 周：开始做更真实的交互页面
+
+目标：完成 `09-18`
+
+重点：
+
+- 样式组织
+- 模态展示
+- 动画和异步加载
+- 组件复用
+- 生命周期
+- 小项目串联
+
+建议成果：
+
+- 做出一个有列表、详情、输入和进度展示的小应用
+
+### 第 3 周：补工程化基础
+
+目标：完成 `19-30`
+
+重点：
+
+- SwiftData 与持久化思路
+- 架构分层
+- 测试、性能、错误处理
+- 网络层、并发
+- 主题系统、组件库、CI/CD
+
+建议成果：
+
+- 给你的小项目补上持久化、错误处理和基础重构
+
+### 第 4 周：补产品和协作意识
+
+目标：完成 `31-50`
+
+重点：
+
+- 安全、日志、本地化、Widget
+- Deep Link、通知、离线优先、功能开关
+- 设计协作、代码评审、数据分析、实验
+- 作品集和下一步成长路线
+
+建议成果：
+
+- 把你的小项目整理成一个更像完整作品的版本
+
+## 不同目标怎么学
+
+### 如果你是完全新手
+
+建议顺序：`01 -> 20`
+
+先不要急着跳到很后面的工程化和协作主题。对完全新手来说，先把页面、状态、异步、小项目练熟，收益最高。
+
+### 如果你已经会一点 SwiftUI，但项目容易写乱
+
+建议顺序：`05 -> 20 -> 28 -> 30 -> 44`
+
+重点补状态管理、数据流、结构分层、主题系统、流程和模块化意识。
+
+### 如果你已经能写页面，想做完整作品集项目
+
+建议顺序：`18 -> 19 -> 20 -> 27 -> 29 -> 45 -> 49 -> 50`
+
+重点练“做完整、讲清楚、能展示”的能力，而不是只继续学零散 API。
+
+## 重点章节导航
+
+如果你现在有明确问题，可以从这些主题切入：
+
+- 不会布局：[04-layout/README.md](/D:/Documents/GitHub/swiftui-learnig/04-layout/README.md)
+- 状态总写乱：[05-state/README.md](/D:/Documents/GitHub/swiftui-learnig/05-state/README.md)
+- 列表和导航不熟：[06-lists/README.md](/D:/Documents/GitHub/swiftui-learnig/06-lists/README.md)、[07-navigation/README.md](/D:/Documents/GitHub/swiftui-learnig/07-navigation/README.md)
+- 不会处理异步和加载态：[12-async-data/README.md](/D:/Documents/GitHub/swiftui-learnig/12-async-data/README.md)
+- 页面开始变乱：[13-reusable-components/README.md](/D:/Documents/GitHub/swiftui-learnig/13-reusable-components/README.md)、[20-architecture-basics/README.md](/D:/Documents/GitHub/swiftui-learnig/20-architecture-basics/README.md)
+- 不知道怎么做完整项目：[18-mini-project/README.md](/D:/Documents/GitHub/swiftui-learnig/18-mini-project/README.md)
+- 想补工程化基础：[21-performance-basics/README.md](/D:/Documents/GitHub/swiftui-learnig/21-performance-basics/README.md) 到 [30-ci-cd-basics/README.md](/D:/Documents/GitHub/swiftui-learnig/30-ci-cd-basics/README.md)
+- 想准备作品集：[49-portfolio-project-guide/README.md](/D:/Documents/GitHub/swiftui-learnig/49-portfolio-project-guide/README.md)
+
 ## 教程结构
 
 整套内容分成 5 个阶段，从基础到项目、再到工程化和长期成长。
@@ -129,17 +240,6 @@
 - 常见误区：提前帮你绕坑
 - 排错流程：报错时先从哪里查
 - 小测和练习：帮助你把“看懂”变成“会用”
-
-## 建议从哪里开始
-
-如果你是完全新手，直接从 [01-introduction/README.md](/D:/Documents/GitHub/swiftui-learnig/01-introduction/README.md) 开始按顺序学就可以。
-
-如果你已经有一点 SwiftUI 基础，可以按你的目标切入：
-
-- 想补基础页面能力：从 `01-10` 开始
-- 想补真实项目能力：从 `11-20` 开始
-- 想补工程化意识：从 `21-30` 开始
-- 想补产品与协作能力：从 `31-50` 开始
 
 ## 这套教程更适合怎么使用
 
