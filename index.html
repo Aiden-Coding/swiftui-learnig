@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftUI 从入门到项目实战</title>
+  <link rel="stylesheet" href="./assets/site.css">
+</head>
+<body class="site-home">
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="hero__eyebrow">SwiftUI 中文教程</p>
+      <h1>SwiftUI 从入门到项目实战</h1>
+      <p class="hero__lead">从基础界面、状态管理，到工程化、产品化、协作与作品集，一套适合中文初学者的系统学习路径。</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="./chapter.html?path=01-introduction/README.md">从第 1 章开始</a>
+        <a class="button button--ghost" href="#tracks">查看学习路线</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <div class="card-grid">
+        <article class="info-card">
+          <h2>适合谁</h2>
+          <ul>
+            <li>完全没有 SwiftUI 经验的同学</li>
+            <li>会一点基础，但项目总写乱的人</li>
+            <li>想把页面、项目和工程化意识一起补起来的人</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h2>你会学到什么</h2>
+          <ul>
+            <li>常见页面布局、状态、列表、导航和表单</li>
+            <li>异步加载、持久化、共享数据和小项目组织</li>
+            <li>测试、性能、架构、发布、协作与作品集思路</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h2>怎么学更有效</h2>
+          <ul>
+            <li>每章都亲手跑一遍代码</li>
+            <li>每完成 5 章做一次复盘</li>
+            <li>先做完一个小而完整的项目闭环</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="learning-path" id="tracks">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">学习路线</p>
+        <h2>按阶段推进，不容易学散</h2>
+      </div>
+      <div id="track-list" class="track-list"></div>
+    </section>
+
+    <section class="roadmap">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">4 周计划</p>
+        <h2>给自己一条可执行的入门节奏</h2>
+      </div>
+      <div class="week-grid">
+        <article class="week-card">
+          <span class="week-card__tag">第 1 周</span>
+          <h3>建立基础页面能力</h3>
+          <p>完成 01-08，重点打稳布局、状态、列表、导航、表单。</p>
+        </article>
+        <article class="week-card">
+          <span class="week-card__tag">第 2 周</span>
+          <h3>开始写更真实的页面</h3>
+          <p>完成 09-18，重点练样式、模态、动画、异步、组件复用和小项目串联。</p>
+        </article>
+        <article class="week-card">
+          <span class="week-card__tag">第 3 周</span>
+          <h3>补工程化基础</h3>
+          <p>完成 19-30，开始理解持久化、架构、测试、网络层、错误处理和 CI/CD。</p>
+        </article>
+        <article class="week-card">
+          <span class="week-card__tag">第 4 周</span>
+          <h3>补产品与协作能力</h3>
+          <p>完成 31-50，把安全、日志、本地化、运营、评审、作品集和成长路线补完整。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">快速入口</p>
+        <h2>现在最需要补什么，就从那里开始</h2>
+      </div>
+      <div class="quick-links__grid">
+        <a class="quick-link" href="./chapter.html?path=04-layout/README.md">
+          <strong>不会布局</strong>
+          <span>去看第 4 章布局系统</span>
+        </a>
+        <a class="quick-link" href="./chapter.html?path=05-state/README.md">
+          <strong>状态总写乱</strong>
+          <span>去看第 5 章状态管理</span>
+        </a>
+        <a class="quick-link" href="./chapter.html?path=12-async-data/README.md">
+          <strong>不会处理加载态</strong>
+          <span>去看第 12 章异步数据加载</span>
+        </a>
+        <a class="quick-link" href="./chapter.html?path=18-mini-project/README.md">
+          <strong>想做完整项目</strong>
+          <span>去看第 18 章小项目实战</span>
+        </a>
+        <a class="quick-link" href="./chapter.html?path=20-architecture-basics/README.md">
+          <strong>页面越写越乱</strong>
+          <span>去看第 20 章架构基础</span>
+        </a>
+        <a class="quick-link" href="./chapter.html?path=49-portfolio-project-guide/README.md">
+          <strong>想准备作品集</strong>
+          <span>去看第 49 章作品集项目指南</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="chapter-library">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">全部章节</p>
+        <h2>50 章完整学习目录</h2>
+      </div>
+      <div id="chapter-groups" class="chapter-groups"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>用教程做出一个完整小项目，通常比继续收藏更多教程更有价值。</p>
+  </footer>
+
+  <script src="./assets/catalog.js"></script>
+  <script src="./assets/site.js"></script>
+</body>
+</html>
