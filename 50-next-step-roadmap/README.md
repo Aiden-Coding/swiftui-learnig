@@ -158,6 +158,32 @@
 - 加强练习：为接下来 4 周定一个可执行的项目练习计划。
 - 挑战练习：选一个已有项目，做一次“补边界 + 重构 + 讲解”的完整打磨。
 
+## 如果你现在只做一件事，我最推荐做什么
+
+如果你已经把整套教程看到这里，但接下来只想做一件最有价值的事，我最推荐的是：
+
+- 选一个现有小项目，把它打磨完整
+
+不是继续看新知识，不是继续收藏教程，而是把手上的东西真正做深。
+
+## 适合你现在回去重看的章节
+
+你不需要把 50 章从头再刷一遍。
+
+更推荐按你当前卡点回看：
+
+- 状态总写乱：回看 [05 状态管理](/D:/Documents/GitHub/swiftui-learnig/05-state/README.md)
+- 异步页面总不稳：回看 [12 异步数据加载](/D:/Documents/GitHub/swiftui-learnig/12-async-data/README.md)
+- 项目结构开始变乱：回看 [20 架构基础](/D:/Documents/GitHub/swiftui-learnig/20-architecture-basics/README.md)
+- 想做作品集但没方向：回看 [49 作品集项目指南](/D:/Documents/GitHub/swiftui-learnig/49-portfolio-project-guide/README.md)
+
+## 推荐和这一章一起配套使用的资源
+
+为了让“教程结束后的成长”更可执行，建议你配合下面两份资源页一起用：
+
+- [00 学习指南](/D:/Documents/GitHub/swiftui-learnig/00-learning-guide/README.md)
+- [00 练手项目路线](/D:/Documents/GitHub/swiftui-learnig/00-practice-roadmap/README.md)
+
 ## 给现在的你一句建议
 
 如果你已经学到这一章，说明你其实已经走过了最容易放弃的那一段。接下来真正拉开差距的，不是你看过多少资料，而是你愿不愿意把一个项目反复做完整、做清楚、做得能讲出来。
