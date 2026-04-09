@@ -1,101 +1,125 @@
-﻿# 16. 数据持久化入门：AppStorage
+﻿# 16. 本地持久化：让数据在下次打开时还在
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 理解“持久化”到底是什么意思。
+- 学会用 `UserDefaults` 保存简单设置。
+- 知道哪些数据适合简单持久化，哪些不适合。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 数据持久化入门：AppStorage，目标是把这个能力直接用到真实页面里。
+你做了一个设置页，用户把“深色模式开关”打开了，结果下一次打开 App 又恢复默认值了。这种体验会非常差。
+
+因为前面的 `@State` 只在当前运行期间有效，一旦 App 关闭，数据就没了。想让数据“下次打开还在”，就需要做持久化。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 数据持久化入门：AppStorage 的核心用法。
+- `持久化`：把数据保存到本地，让它在程序关闭后依然存在。
+- `UserDefaults`：适合保存简单配置的小型本地存储。
+- `键值对`：通过一个 key 存值，再通过同一个 key 取值。
+- `@AppStorage`：SwiftUI 对 `UserDefaults` 的友好封装。
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter16CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+临时状态只活在当前页面，持久化数据会活到下一次打开 App。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-struct Chapter16CaseView: View {
-    @State private var input = ""
-    @State private var items: [String] = []
+struct PersistenceSettingsView: View {
+    @AppStorage("nickname") private var nickname = ""
+    @AppStorage("dailyReminderEnabled") private var dailyReminderEnabled = true
+    @AppStorage("autoPlayVideo") private var autoPlayVideo = false
 
     var body: some View {
-        VStack(spacing: 10) {
-            TextField("输入内容", text: $input)
-                .textFieldStyle(.roundedBorder)
-            Button("添加") {
-                guard !input.isEmpty else { return }
-                items.append(input)
-                input = ""
+        NavigationStack {
+            Form {
+                Section("个人信息") {
+                    TextField("输入你的昵称", text: $nickname)
+                }
+
+                Section("学习偏好") {
+                    Toggle("开启每日提醒", isOn: $dailyReminderEnabled)
+                    Toggle("自动播放课程视频", isOn: $autoPlayVideo)
+                }
+
+                Section("当前结果") {
+                    Text("昵称：\(nickname.isEmpty ? "未设置" : nickname)")
+                    Text("每日提醒：\(dailyReminderEnabled ? "已开启" : "已关闭")")
+                    Text("自动播放：\(autoPlayVideo ? "已开启" : "已关闭")")
+                }
             }
-            List(items, id: \.self) { Text($0) }
+            .navigationTitle("学习设置")
         }
-        .padding()
     }
 }
+
+#Preview {
+    PersistenceSettingsView()
+}
 ```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- `@AppStorage` 用起来像普通状态，但底层会自动存到本地。
+- 用户修改昵称和开关后，下次打开 App 还能读到上次保存的值。
+- 这种方式特别适合“设置项”“偏好项”“默认选项”这类轻量数据。
 
-## 新手排错流程（建议照着做）
+## 什么适合用 `@AppStorage`
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+- 用户昵称
+- 开关状态
+- 默认排序方式
+- 主题偏好
+
+## 什么不适合只用 `@AppStorage`
+
+- 很长的课程列表
+- 复杂笔记内容
+- 需要排序筛选的大量记录
+
+这些内容更适合后面学数据库或 `SwiftData` 时处理。
+
+## 新手常见误区
+
+- 以为 `@State` 会自动记住上次值。
+- 什么数据都往 `UserDefaults` 里放。
+- key 名随便写，后面自己都对不上。
+
+## 新手排错流程
+
+1. 重启 App 后数据丢失时，先检查是不是还在用 `@State`。
+2. 取不到值时，检查 key 是否前后一致。
+3. 布尔值结果不对时，检查默认值是不是写反了。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+为什么设置类数据适合用 `@AppStorage`？
+
+参考答案：因为它轻量、简单，而且能自动和界面联动。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+`@State` 和 `@AppStorage` 的最大区别是什么？
+
+参考答案：`@State` 只在当前运行期有效，`@AppStorage` 会持久保存到本地。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+课程大列表适合直接存进 `UserDefaults` 吗？
+
+参考答案：通常不适合，因为它更适合保存简单、小量的配置数据。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
-
-## 本章学习提示
-
-先跑通最小示例，再逐步加功能。
+- 基础练习：增加一个“默认字体大小”选项。
+- 加强练习：增加“是否显示学习进度百分比”开关。
+- 挑战练习：把 key 名整理成统一常量。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+学完这章后，你应该已经知道：如果想让用户设置在下次打开时还在，就不能只靠页面状态，而要把数据保存到本地。

@@ -1,107 +1,114 @@
-﻿# 22. 无障碍基础
+﻿# 22. 无障碍基础：让更多人能用你的 App
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 理解无障碍不是附加项，而是产品质量的一部分。
+- 认识 `accessibilityLabel`、`accessibilityHint` 等基础能力。
+- 能为一个简单页面补上基础无障碍信息。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 无障碍基础，目标是把这个能力直接用到真实页面里。
+如果一个按钮只有图标、没有文字，很多用户看一眼也许能猜到它的意思；但对使用 VoiceOver 的用户来说，如果你没有提供额外说明，这个按钮可能几乎不可用。
+
+无障碍的意义就在这里：让不同使用方式的用户，都能理解和操作你的界面。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 无障碍基础 的核心用法。
+- `无障碍`：帮助更多用户访问和使用界面的能力。
+- `VoiceOver`：Apple 设备上的屏幕朗读功能。
+- `accessibilityLabel`：给控件提供更清晰的可读名称。
+- `accessibilityHint`：进一步说明控件操作后的结果。
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter22CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+无障碍不是“给少数人加功能”，而是让界面表达更完整。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-enum Chapter22State {
-    case idle
-    case loading
-    case done
-}
-
-struct Chapter22CaseView: View {
-    @State private var state: Chapter22State = .idle
+struct AccessibilityLessonView: View {
+    @State private var isFavorite = false
 
     var body: some View {
-        VStack(spacing: 12) {
-            Text("第 22 章：无障碍基础")
-            Button("执行流程") {
-                state = .loading
-                Task {
-                    try? await Task.sleep(for: .seconds(1))
-                    state = .done
-                }
+        VStack(spacing: 20) {
+            Text("SwiftUI 学习卡片")
+                .font(.title2)
+                .fontWeight(.bold)
+
+            Text("这是一节关于状态管理的课程。")
+                .foregroundStyle(.secondary)
+
+            Button {
+                isFavorite.toggle()
+            } label: {
+                Image(systemName: isFavorite ? "heart.fill" : "heart")
+                    .font(.system(size: 28))
+                    .foregroundStyle(isFavorite ? .red : .gray)
             }
-            Text("当前状态：$(String(describing: state))")
+            .accessibilityLabel(isFavorite ? "取消收藏课程" : "收藏课程")
+            .accessibilityHint("双击后会切换课程的收藏状态")
+
+            Button("开始学习") {
+                print("开始学习")
+            }
+            .buttonStyle(.borderedProminent)
+            .accessibilityHint("双击后进入当前课程内容")
         }
         .padding()
     }
 }
+
+#Preview {
+    AccessibilityLessonView()
+}
 ```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- 图标按钮如果只有图像，最好主动补上 `accessibilityLabel`。
+- `accessibilityHint` 适合告诉用户“点了之后会发生什么”。
+- 对视觉用户 obvious 的东西，不代表对朗读用户也清楚。
 
-## 新手排错流程（建议照着做）
+## 新手常见误区
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+- 觉得无障碍是后期再做的事。
+- 只有图标没有文字，也没有补 label。
+- 页面看起来没问题，就以为所有用户都能顺畅使用。
+
+## 新手排错流程
+
+1. 遇到纯图标按钮时，先检查是否需要补 `accessibilityLabel`。
+2. 操作结果不明显时，检查是否需要补 `accessibilityHint`。
+3. 页面信息很多但朗读很乱时，检查控件语义是否清晰。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+为什么图标按钮通常更需要 `accessibilityLabel`？
+
+参考答案：因为图标本身未必能被朗读系统准确表达。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+`accessibilityHint` 适合说明什么？
+
+参考答案：适合说明操作后会发生什么。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+为什么无障碍应该尽早考虑？
+
+参考答案：因为它本身就是界面表达和产品质量的一部分，不是可有可无的附加项。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
-
-## 本章学习提示
-
-先跑通最小示例，再逐步加功能。
+- 基础练习：给页面里的每个按钮都检查一遍无障碍说明是否足够。
+- 加强练习：把一个只有图标的操作区改成“图标 + 文本”或补充 label。
+- 挑战练习：为一个设置页设计更清晰的无障碍文案。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+学完这章后，你应该已经知道：无障碍不是特别高级的额外工作，而是帮助界面更完整表达的一部分。

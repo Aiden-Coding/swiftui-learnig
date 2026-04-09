@@ -1,107 +1,118 @@
-﻿# 25. Swift 并发基础
+﻿# 25. Swift 并发基础：async、await 和 Task 怎么配合
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 理解 Swift 并发为什么能让异步代码更好读。
+- 学会区分 `async`、`await`、`Task` 的基本作用。
+- 能看懂一个最基础的异步加载写法。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 Swift 并发基础，目标是把这个能力直接用到真实页面里。
+以前很多异步代码会写成一层层回调，逻辑一复杂就很容易乱。Swift 并发的目标，就是让这种代码写起来更像顺序流程，更容易读。
+
+对 SwiftUI 新手来说，不需要一开始就掌握所有并发细节。先把 `async`、`await`、`Task` 这三个角色分清楚，就已经能解决很多实际问题了。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 Swift 并发基础 的核心用法。
+- `async`：声明一个函数是异步的。
+- `await`：等待异步结果返回。
+- `Task`：启动一个异步任务。
+- `并发`：让多个任务更合理地被调度，而不是全都堵在主线程上。
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter25CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+`async` 是能力声明，`await` 是等待结果，`Task` 是启动工作。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-enum Chapter25State {
-    case idle
-    case loading
-    case done
-}
-
-struct Chapter25CaseView: View {
-    @State private var state: Chapter25State = .idle
+struct ConcurrencyDemoView: View {
+    @State private var message = "点击按钮开始加载"
+    @State private var isLoading = false
 
     var body: some View {
-        VStack(spacing: 12) {
-            Text("第 25 章：Swift 并发基础")
-            Button("执行流程") {
-                state = .loading
+        VStack(spacing: 16) {
+            Text(message)
+                .multilineTextAlignment(.center)
+
+            if isLoading {
+                ProgressView()
+            }
+
+            Button("加载学习建议") {
                 Task {
-                    try? await Task.sleep(for: .seconds(1))
-                    state = .done
+                    await loadSuggestion()
                 }
             }
-            Text("当前状态：$(String(describing: state))")
+            .buttonStyle(.borderedProminent)
         }
         .padding()
     }
+
+    @MainActor
+    private func loadSuggestion() async {
+        isLoading = true
+        message = "正在加载中..."
+
+        try? await Task.sleep(for: .seconds(1.5))
+
+        message = "建议你今天先复习状态管理，再练习列表与导航。"
+        isLoading = false
+    }
+}
+
+#Preview {
+    ConcurrencyDemoView()
 }
 ```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- 按钮点击后，我们用 `Task` 启动异步工作。
+- `loadSuggestion()` 被标记成 `async`，说明它里面会执行异步操作。
+- `await Task.sleep(...)` 表示这里需要等待一段异步时间。
+- 更新界面的代码放在 `@MainActor` 环境里，更符合 SwiftUI 页面更新要求。
 
-## 新手排错流程（建议照着做）
+## 新手常见误区
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+- 看到 `async` 就以为函数会自动执行。
+- 忘记 `await`，导致调用方式不对。
+- 异步结束后改界面状态，却没注意主线程更新问题。
+
+## 新手排错流程
+
+1. 函数明明是异步的却直接调用报错时，检查是否放在 `Task` 中或异步上下文里。
+2. 调用异步函数时报错时，检查是否忘了 `await`。
+3. 页面状态异常时，检查异步前后是否正确切换了 `isLoading`。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+`Task` 最常见的用途是什么？
+
+参考答案：用来启动一段异步任务。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+`await` 的作用是什么？
+
+参考答案：等待异步操作完成后再继续往下执行。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+为什么异步页面通常要配合加载状态？
+
+参考答案：因为用户需要知道页面当前是不是正在处理任务。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
-
-## 本章学习提示
-
-先跑通最小示例，再逐步加功能。
+- 基础练习：让按钮文案在加载时变成“加载中”。
+- 加强练习：增加一个失败状态。
+- 挑战练习：做两个异步步骤串联执行的演示页面。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+学完这章后，你应该已经知道：Swift 并发的核心价值，是让异步代码写得更像顺序逻辑，更容易理解和维护。

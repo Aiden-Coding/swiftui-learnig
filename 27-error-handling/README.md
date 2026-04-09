@@ -1,107 +1,150 @@
-﻿# 27. 错误处理与恢复策略
+﻿# 27. 错误处理基础：不要只处理成功结果
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 理解为什么错误处理是正常流程的一部分。
+- 学会在页面中表达失败状态和提示信息。
+- 知道 `do-catch` 在异步和请求场景中的基本作用。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 错误处理与恢复策略，目标是把这个能力直接用到真实页面里。
+很多新手写功能时只盯着“成功路径”，比如请求成功、保存成功、提交成功。但真实项目里失败是一定会发生的：
+
+- 网络断开
+- 解析失败
+- 输入不合法
+- 权限不足
+
+如果你不提前设计错误处理，用户只会看到页面空白、按钮没反应，或者完全不知道刚才发生了什么。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 错误处理与恢复策略 的核心用法。
+- `错误处理`：在失败发生时给出清晰反馈和处理方式。
+- `do-catch`：捕获可能抛出错误的代码。
+- `throw`：主动抛出一个错误。
+- `用户反馈`：失败时给用户看的提示内容。
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter27CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+好页面不是“永远成功”，而是“失败时也让用户知道接下来怎么办”。
 
 ## 完整示例代码
 
 ```swift
 import SwiftUI
 
-enum Chapter27State {
-    case idle
-    case loading
-    case done
+enum LoginError: Error {
+    case emptyInput
+    case invalidPassword
 }
 
-struct Chapter27CaseView: View {
-    @State private var state: Chapter27State = .idle
+struct ErrorHandlingDemoView: View {
+    @State private var username = ""
+    @State private var password = ""
+    @State private var errorMessage = ""
+    @State private var showError = false
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("第 27 章：错误处理与恢复策略")
-            Button("执行流程") {
-                state = .loading
-                Task {
-                    try? await Task.sleep(for: .seconds(1))
-                    state = .done
+            TextField("用户名", text: $username)
+                .textFieldStyle(.roundedBorder)
+
+            SecureField("密码", text: $password)
+                .textFieldStyle(.roundedBorder)
+
+            Button("登录") {
+                do {
+                    try validateLogin()
+                    errorMessage = ""
+                    showError = false
+                } catch {
+                    errorMessage = error.localizedDescription
+                    showError = true
                 }
             }
-            Text("当前状态：$(String(describing: state))")
+            .buttonStyle(.borderedProminent)
+
+            if showError {
+                Text(errorMessage)
+                    .foregroundStyle(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
         .padding()
     }
+
+    private func validateLogin() throws {
+        if username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+            password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            throw LoginError.emptyInput
+        }
+
+        if password.count < 6 {
+            throw LoginError.invalidPassword
+        }
+    }
+}
+
+extension LoginError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .emptyInput:
+            return "用户名和密码都不能为空。"
+        case .invalidPassword:
+            return "密码长度至少需要 6 位。"
+        }
+    }
+}
+
+#Preview {
+    ErrorHandlingDemoView()
 }
 ```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- `throw` 用来主动抛出一个错误情况。
+- `do-catch` 负责捕获错误并决定怎么反馈给用户。
+- 失败提示不是给开发者看的报错，而是给用户看的可理解信息。
 
-## 新手排错流程（建议照着做）
+## 新手常见误区
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+- 只处理成功路径，不处理失败路径。
+- 出错后什么都不提示，用户完全不知道发生了什么。
+- 直接把技术报错原样暴露给用户，体验很差。
+
+## 新手排错流程
+
+1. 页面没反应时，先确认错误有没有被捕获。
+2. 错误提示不友好时，检查是否需要做更面向用户的文案转换。
+3. 某些失败情况总漏掉时，先列出所有可能分支再补处理。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+为什么错误处理不能后补再说？
+
+参考答案：因为失败本来就是正常流程的一部分，不提前设计会让体验非常差。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+`do-catch` 最核心的用途是什么？
+
+参考答案：捕获可能抛出的错误并进行处理。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+为什么用户提示不能直接照搬底层报错？
+
+参考答案：因为底层报错通常太技术化，不适合直接给用户看。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
-
-## 本章学习提示
-
-先跑通最小示例，再逐步加功能。
+- 基础练习：给用户名也增加长度校验。
+- 加强练习：把错误提示改成 `alert` 形式。
+- 挑战练习：模拟一个网络请求失败页面并提供重试。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+学完这章后，你应该已经知道：错误处理不是额外工作，而是让页面真正可用的一部分。

@@ -1,101 +1,114 @@
-﻿# 17. 测试基础：可测试思维与单元测试
+﻿# 17. 测试基础：先验证逻辑，再放心改代码
 
 ## 学习目标
 
-- 理解：知道这章解决什么问题。
-- 实操：能独立跑通本章案例。
-- 迁移：能把本章能力用到项目里。
+- 理解测试为什么能帮助你减少改代码时的恐惧。
+- 认识单元测试最适合验证什么。
+- 学会为一个简单的业务逻辑写测试思路。
 
-## 场景引入（你会在哪遇到它）
+## 场景引入
 
-你正在学习 测试基础：可测试思维与单元测试，目标是把这个能力直接用到真实页面里。
+很多新手一听到“测试”就觉得离自己很远，像是大项目才需要。但只要你遇到过这些情况，就会知道测试有多有用：
+
+- 明明只是改了一个小逻辑，结果别的地方坏了
+- 改完代码后不敢继续重构
+- 每次都要手点一遍页面确认功能还在
+
+测试最核心的价值不是形式，而是让你能更放心地修改代码。
 
 ## 本章术语先看懂
 
-- 关键词：状态、布局、交互、可维护性
-- 一句话理解：通过本章案例掌握 测试基础：可测试思维与单元测试 的核心用法。
+- `单元测试`：验证某个小逻辑是否正确。
+- `断言`：写下“我预期结果应该是什么”。
+- `可测试逻辑`：不依赖界面、输入输出清楚的逻辑。
 
-## 手把手步骤（每一步都有预期结果）
+## 一句话理解
 
-1. 创建并打开 Chapter17CaseView。
-2. 粘贴完整示例代码并运行。
-3. 操作按钮或输入框，观察状态变化。
-4. 修改一处文案或样式并再次运行。
-5. 完成小测和练习任务。
+测试不是先测页面好不好看，而是先测“规则有没有算对”。
 
-## 完整示例代码
+## 示例业务逻辑
 
 ```swift
-import SwiftUI
-
-struct Chapter17CaseView: View {
-    @State private var input = ""
-    @State private var items: [String] = []
-
-    var body: some View {
-        VStack(spacing: 10) {
-            TextField("输入内容", text: $input)
-                .textFieldStyle(.roundedBorder)
-            Button("添加") {
-                guard !input.isEmpty else { return }
-                items.append(input)
-                input = ""
-            }
-            List(items, id: \.self) { Text($0) }
-        }
-        .padding()
+struct ProgressSummaryBuilder {
+    func message(completed: Int, total: Int) -> String {
+        guard total > 0 else { return "还没有学习任务" }
+        guard completed < total else { return "已全部完成" }
+        return "已完成 \(completed) / \(total)"
     }
 }
 ```
+
+## 对应测试代码示例
+
+```swift
+import XCTest
+@testable import YourAppModuleName
+
+final class ProgressSummaryBuilderTests: XCTestCase {
+    func testEmptyTasks() {
+        let builder = ProgressSummaryBuilder()
+        let result = builder.message(completed: 0, total: 0)
+        XCTAssertEqual(result, "还没有学习任务")
+    }
+
+    func testAllCompleted() {
+        let builder = ProgressSummaryBuilder()
+        let result = builder.message(completed: 3, total: 3)
+        XCTAssertEqual(result, "已全部完成")
+    }
+
+    func testPartialCompleted() {
+        let builder = ProgressSummaryBuilder()
+        let result = builder.message(completed: 1, total: 3)
+        XCTAssertEqual(result, "已完成 1 / 3")
+    }
+}
+```
+
 ## 代码拆解（小白重点）
 
-- 通过 @State 保存会变化的数据。
-- 交互发生后先改状态，再让界面自动刷新。
-- 页面结构优先保证清晰，再逐步加样式。
+- 先把可测试逻辑从 SwiftUI 视图里提出来。
+- `XCTAssertEqual` 的作用就是核对“实际结果”和“预期结果”是否一致。
+- 同一个函数通常要测多种输入情况，才能真正安心。
 
-## 新手排错流程（建议照着做）
+## 新手常见误区
 
-1. 先看第一条报错，不要同时改很多行。
-2. 检查括号、逗号、引号是否成对。
-3. 检查状态变量名是否拼写一致。
-4. 回退最近 1-2 处改动后重试。
-5. 先回到最小可运行版本，再逐步加功能。
+- 觉得测试一定要从 UI 开始。
+- 功能简单就不写测试。
+- 以为测试只是形式，没有实际收益。
+
+## 新手排错流程
+
+1. 测试 target 跑不起来时，先检查 target 配置。
+2. `@testable import` 报错时，检查模块名是否正确。
+3. 测试失败时，先区分是逻辑写错了，还是预期写错了。
 
 ## 章节小测（带答案）
 
 ### 题 1
-本章里哪个数据会触发界面刷新？
 
-参考答案：由 @State 管理并被视图使用的数据。
+为什么初学测试时推荐先测纯逻辑？
+
+参考答案：因为输入输出更清楚，理解门槛更低，不容易被 UI 细节干扰。
 
 ### 题 2
-为什么先跑通最小示例？
 
-参考答案：先确保链路正确，再扩展时更容易定位问题。
+`XCTAssertEqual` 是干什么的？
+
+参考答案：用来断言实际结果是否等于预期结果。
 
 ### 题 3
-如果交互后 UI 没变化，先查什么？
 
-参考答案：是否修改了正确的状态变量、是否绑定到当前视图。
+如果一个函数很难写测试，通常说明什么？
+
+参考答案：通常说明它职责太多，或者依赖太复杂，应该考虑拆分。
 
 ## 练习任务
 
-- 基础练习：完成本章示例后，按你的业务场景改造一次。
-- 加强练习：增加一个新的状态并展示在界面上。
-- 挑战练习：把交互区域抽成子视图，并通过参数通信。
-
-## 复盘模板（建议每章都写）
-
-- 我今天真正学会了什么：
-- 我仍然不理解的点：
-- 我可以在哪个页面立刻用上它：
-- 我下次要避免的错误：
-
-## 本章学习提示
-
-先跑通最小示例，再逐步加功能。
+- 基础练习：给 `ProgressSummaryBuilder` 增加一个边界情况。
+- 加强练习：写一个“根据分数返回等级”的函数并补测试。
+- 挑战练习：把前面某章中的纯逻辑提取出来写测试。
 
 ## 本章小结
 
-本章结束后，你应该已经能完成：把本章能力迁移到你自己的项目页面。
-
+学完这章后，你应该已经明白：测试不是离新手很远的东西，它其实是帮助你稳定修改代码的一种安全网。
