@@ -38,6 +38,15 @@
 4. 遇到报错先看章节里的“排错流程”，再动手查问题。
 5. 不要急着同时开很多项目，先做完一个小而完整的练习闭环。
 
+## 先读这 4 份课程资源
+
+如果你想把这套教程学得更稳、更像一套完整课程，建议先把下面这几份资源页放进你的学习路线里：
+
+- [00 学习指南：怎么把这套 SwiftUI 教程学成真正的能力](/D:/Documents/GitHub/swiftui-learnig/00-learning-guide/README.md)
+- [00 SwiftUI 术语表：新手最容易混的词，先看懂再继续学](/D:/Documents/GitHub/swiftui-learnig/00-swiftui-glossary/README.md)
+- [00 常见报错与排错清单：新手最容易卡住的 SwiftUI 问题](/D:/Documents/GitHub/swiftui-learnig/00-common-errors/README.md)
+- [00 练手项目路线：把教程真正变成作品和能力](/D:/Documents/GitHub/swiftui-learnig/00-practice-roadmap/README.md)
+
 ## 新手学习路线
 
 如果你不确定从哪里开始，可以直接照这个顺序走：
